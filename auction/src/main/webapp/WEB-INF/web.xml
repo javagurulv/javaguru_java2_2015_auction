@@ -10,6 +10,28 @@
         <servlet-class>lv.javaguru.java2.servlet.HelloWorldServlet</servlet-class>
     </servlet>
 
+
+    <servlet>
+        <servlet-name>ShowTableServlet</servlet-name>
+        <servlet-class>lv.javaguru.java2.servlet.ShowTableServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ShowTableServlet</servlet-name>
+        <url-pattern>/show</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ShowProductsServlet</servlet-name>
+        <servlet-class>lv.javaguru.java2.servlet.ShowProductsServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ShowProductsServlet</servlet-name>
+        <url-pattern>/products</url-pattern>
+    </servlet-mapping>
+
+
     <servlet-mapping>
         <servlet-name>HelloWorldServlet</servlet-name>
         <url-pattern>/hello</url-pattern>

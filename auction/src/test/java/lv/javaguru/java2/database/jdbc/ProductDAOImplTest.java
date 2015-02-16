@@ -54,6 +54,11 @@ public class ProductDAOImplTest {
 
     @Test
     public void testGetById() throws DBException {
+        Product product1 = createProduct("F1", "L1", 1);
+        productDAO.create(product1);
+
+        Product returnedProduct = productDAO.getById(product1.getProductID());
+        assert (product1.getName().equals(returnedProduct.getName()) );
     }
 
     @Test

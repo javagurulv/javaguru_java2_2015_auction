@@ -38,7 +38,6 @@ public class DAOImpl {
         Properties properties = new Properties();
         try {
             properties.load(DAOImpl.class.getClassLoader().getResourceAsStream(DB_CONFIG_FILE));
-
             dbUrl = properties.getProperty("dbUrl");
             userName = properties.getProperty("userName");
             password = properties.getProperty("password");

@@ -8,6 +8,42 @@ public class Product{
     private String name;
     private String description;
     private long ownerID;
+    private ProductCategory category;
+    private boolean status;
+    private String image = null;
+    private double price;
+
+    public ProductCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(ProductCategory category) {
+        this.category = category;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public long getProductID() {
         return productID;

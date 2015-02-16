@@ -18,52 +18,38 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`users` (
 )
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
+
+-- -----------------------------------------------------
+-- Category table
+-- -----------------------------------------------------
+drop table `Java2_test`.`categories`;
+CREATE TABLE IF NOT EXISTS `Java2_test`.`categories` (
+  `CategoryID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Name` CHAR(32) NOT NULL,
+  PRIMARY KEY (`CategoryID`)
+)
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 12;
 -- ------------------------------------------------------
 -- Product table
 -- ------------------------------------------------------
-drop table if exists `Java2_test`.`products`;
-
-create table if not exists  `Java2_test`.`products`(
-  `ProductID` int(11) not null auto_increment,
-  `Name` varchar(35) not null,
-  `Description` varchar(3000),
-  `OwnerID` int(11) not null,
-  primary key(`ProductID`)
- -- foreign key(`OwnerID`) references users(`UserID`)
-)
-  ENGINE = InnoDB
-  AUTO_INCREMENT = 1002;
-
--- -----------------------------------------------------
-
-
-
-CREATE TABLE IF NOT EXISTS `Java2_test`.`categories` (
-  `CatID` INT(11) NOT NULL AUTO_INCREMENT,
-  `Name` CHAR(32) NOT NULL,
-  PRIMARY KEY (`CatID`)
-)
-ENGINE = InnoDB
-AUTO_INCREMENT = 12;
-
-
-
+drop table `Java2_test`.`products`;
 CREATE TABLE IF NOT EXISTS `Java2_test`.`products` (
   `ProductID` INT(11) NOT NULL AUTO_INCREMENT,
   `Name` CHAR(32) NOT NULL,
-  `Description` VARCHAR(300),
+  `Description` VARCHAR(3000),
   `Status` BOOL,
   `Image` CHAR(30),
   `Price` DECIMAL(10,2),
   `UserID` INT(11) NOT NULL,
-  `CatID` INT(11) NOT NULL,
+  `CategoryID` INT(11) NOT NULL,
   PRIMARY KEY (`ProductID`),
   CONSTRAINT UserOwnsProduct FOREIGN KEY (UserID) REFERENCES users(UserID)
-	     ON DELETE CASCADE,
-	FOREIGN KEY (CatID) REFERENCES categories(CatID)
+    ON DELETE CASCADE,
+  FOREIGN KEY (CategoryID) REFERENCES categories(CategoryID)
 )
-ENGINE = InnoDB
-AUTO_INCREMENT = 102;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 102;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

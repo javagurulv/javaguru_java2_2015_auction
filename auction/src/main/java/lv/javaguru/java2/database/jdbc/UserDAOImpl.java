@@ -1,7 +1,7 @@
 package lv.javaguru.java2.database.jdbc;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.ObjectDAO;
+import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
 
 import java.sql.Connection;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by Viktor on 01/07/2014.
  */
-public class UserDAOImpl extends DAOImpl implements ObjectDAO {
+public class UserDAOImpl extends DAOImpl implements UserDAO {
 
     @Override
     public void create(User user) throws DBException {

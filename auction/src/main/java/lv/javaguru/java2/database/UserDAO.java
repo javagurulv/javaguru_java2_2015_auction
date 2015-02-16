@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Viktor on 01/07/2014.
  */
-public interface ObjectDAO {
+public interface UserDAO {
 
     void create(User user) throws DBException;
 

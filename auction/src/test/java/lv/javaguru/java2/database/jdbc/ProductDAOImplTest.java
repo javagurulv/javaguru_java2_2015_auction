@@ -29,6 +29,15 @@ public class ProductDAOImplTest {
 
     @Test
     public void testCreate() throws DBException {
+        Product product = createProduct("F", "L");
+
+        productDAO.create(product);
+
+        Product productFromDB = productDAO.getById(product.getProductID());
+        assertNotNull(productFromDB);
+        assertEquals(product.getProductID(), productFromDB.getProductID());
+        assertEquals(product.getName(), productFromDB.getName());
+        assertEquals(product.getDescription(), productFromDB.getDescription());
 
     }
 
@@ -50,8 +59,11 @@ public class ProductDAOImplTest {
     //Feel free to write your own!
 
     //Customize this one as you like!
-    private Product createUser() {
-        return null;
+    private Product createProduct(String name, String description) {
+        Product product = new Product();
+        product.setName(name);
+        product.setDescription(description);
+        return product;
     }
 
 }

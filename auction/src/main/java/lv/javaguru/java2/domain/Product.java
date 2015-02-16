@@ -7,8 +7,7 @@ public class Product{
     private long productID;
     private String name;
     private String description;
-    private long userID;
-    private ProductCategory category;
+    private long ownerID;
 
     public long getProductID() {
         return productID;
@@ -34,31 +33,11 @@ public class Product{
         this.description = description;
     }
 
-    public long getUserID() {
-        return userID;
+    public long getOwnerID() {
+        return ownerID;
     }
 
-    public void setUserID(long userID) {
-        this.userID = userID;
+    public void setOwnerID(long ownerID) {
+        this.ownerID = ownerID;
     }
-
-    public ProductCategory getCategory() {
-        return category;
-    }
-
-    public void setCategory(ProductCategory category) {
-        this.category = category;
-    }
-
-    public ProductStatus getProductStatus() {
-        return productStatus;
-    }
-
-    public void setProductStatus(ProductStatus productStatus) {
-        this.productStatus = productStatus;
-    }
-
-    private ProductStatus productStatus;
-    //To do private Picture Picture;
-
 }

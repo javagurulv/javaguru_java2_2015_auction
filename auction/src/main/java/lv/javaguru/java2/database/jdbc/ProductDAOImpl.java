@@ -6,6 +6,8 @@ import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.Product;
 import lv.javaguru.java2.domain.User;
 
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,26 +17,125 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
 
     @Override
     public void create(Product product) throws DBException {
+        if (product==null) return;
 
+        Connection connection= null;
+        try {
+            connection = getConnection();
+            PreparedStatement statement =
+                    connection.prepareStatement("INSERT into products values(DEFAULT, ?, ?, ? )", Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, product.getName());
+            statement.setString(2, product.getDescription());
+            statement.setLong(3, product.getOwnerID());
+            statement.executeUpdate();
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) product.setProductID(rs.getLong(1));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Exception while execute ProductDAOImpl.create()");
+            throw new DBException(e);
+        }
+        finally {
+            closeConnection(connection);
+        }
     }
 
     @Override
     public Product getById(Long id) throws DBException {
-        return null;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement("SELECT * from products where ProductID=?");
+            statement.setLong(1, id);
+            statement.executeQuery();
+            ResultSet rs = statement.getResultSet();
+            Product product = null;
+            if (rs.next()){
+                product= new Product();
+                product.setProductID(rs.getLong("ProductID"));
+                product.setName(rs.getString("Name"));
+                product.setDescription(rs.getString("Description"));
+                product.setOwnerID(rs.getLong("OwnerID"));
+            }
+            return product;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Exception while execute ProductDAOImpl.getById()");
+            throw new DBException(e);
+        }
+        finally {
+            closeConnection(connection);
+        }
     }
 
     @Override
     public void delete(Long id) throws DBException {
-
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement("delete from products where ProductID=?");
+            statement.setLong(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Exception while execute ProductDAOImpl.delete()");
+            throw new DBException(e);
+        }
+        finally {
+            closeConnection(connection);
+        }
     }
 
     @Override
     public void update(Product product) throws DBException {
-
+        if  (product == null) return;
+        Connection connection = null;
+        connection = getConnection();
+        try {
+            PreparedStatement statement =
+                    connection.prepareStatement("UPDATE products SET Name = ?, Description = ?," +
+                            "OwnerID = ? where ProductID = ?");
+            statement.setString(1, product.getName());
+            statement.setString(2, product.getDescription());
+            statement.setLong(3, product.getOwnerID());
+            statement.setLong(4, product.getProductID());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Exception while execute ProductDAOImpl.update()");
+            throw new DBException(e);
+        }
+        finally {
+            closeConnection(connection);
+        }
     }
 
     @Override
     public List<Product> getAll() throws DBException {
-        return null;
+        Connection connection = null;
+        List<Product> products = new ArrayList<Product>();
+        try {
+            connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement("SELECT * from products");
+            statement.executeUpdate();
+            ResultSet rs = statement.getResultSet();
+            while(rs.next()){
+                Product product= new Product();
+                product.setProductID(rs.getLong("ProductID"));
+                product.setName(rs.getString("Name"));
+                product.setDescription(rs.getString("Description"));
+                product.setOwnerID(rs.getLong("OwnerID"));
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Exception while execute ProductDAOImpl.create()");
+            throw new DBException(e);
+        }
+        finally {
+            closeConnection(connection);
+        }
+        return products;
     }
+
 }

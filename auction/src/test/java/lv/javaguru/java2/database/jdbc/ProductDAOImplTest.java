@@ -63,10 +63,27 @@ public class ProductDAOImplTest {
 
     @Test
     public void testDelete() throws DBException {
+        Product product = createProduct("F4", "L4", 4);
+        productDAO.create(product);
+
+        productDAO.delete(product.getProductID());
+        assert(productDAO.getAll().size()==0);
     }
 
     @Test
     public void testUpdate() throws DBException {
+        Product product1 = createProduct("F1", "L1", 1);
+        productDAO.create(product1);
+
+        product1.setName("F2");
+        product1.setDescription("L2");
+        product1.setOwnerID(2);
+
+        productDAO.update(product1);
+
+        assert(product1.getName()=="F2");
+        assert(product1.getDescription()=="L2");
+        assert(product1.getOwnerID()==1);
     }
     //Feel free to write your own!
 

@@ -15,7 +15,7 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
 
     @Override
     public void create(Product product) throws DBException {
-        
+
     }
 
     @Override

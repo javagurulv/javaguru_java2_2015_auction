@@ -27,6 +27,7 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
             statement.setString(1, product.getName());
             statement.setString(2, product.getDescription());
             statement.setLong(3, product.getOwnerID());
+
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
             if (rs.next()) product.setProductID(rs.getLong(1));
@@ -117,8 +118,8 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
         try {
             connection = getConnection();
             PreparedStatement statement = connection.prepareStatement("SELECT * from products");
-            statement.executeUpdate();
-            ResultSet rs = statement.getResultSet();
+
+            ResultSet rs = statement.executeQuery();
             while(rs.next()){
                 Product product= new Product();
                 product.setProductID(rs.getLong("ProductID"));
@@ -129,7 +130,7 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Exception while execute ProductDAOImpl.create()");
+            System.out.println("Exception while execute ProducesDAOImpl.getAll");
             throw new DBException(e);
         }
         finally {

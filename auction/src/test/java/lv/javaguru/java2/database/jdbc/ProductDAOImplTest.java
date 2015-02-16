@@ -29,7 +29,7 @@ public class ProductDAOImplTest {
 
     @Test
     public void testCreate() throws DBException {
-        Product product = createProduct("F", "L");
+        Product product = createProduct("F", "L", 1);
 
         productDAO.create(product);
 
@@ -38,11 +38,18 @@ public class ProductDAOImplTest {
         assertEquals(product.getProductID(), productFromDB.getProductID());
         assertEquals(product.getName(), productFromDB.getName());
         assertEquals(product.getDescription(), productFromDB.getDescription());
+        assertEquals(product.getOwnerID(), productFromDB.getOwnerID());
 
     }
 
     @Test
     public void testMultipleProductCreation() throws DBException {
+        Product product1 = createProduct("F1", "L1", 1);
+        Product product2 = createProduct("F2", "L2", 2);
+        productDAO.create(product1);
+        productDAO.create(product2);
+        List<Product> products = productDAO.getAll();
+        assertEquals(2, products.size());
     }
 
     @Test
@@ -59,10 +66,11 @@ public class ProductDAOImplTest {
     //Feel free to write your own!
 
     //Customize this one as you like!
-    private Product createProduct(String name, String description) {
+    private Product createProduct(String name, String description, long id) {
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);
+        product.setOwnerID(id);
         return product;
     }
 

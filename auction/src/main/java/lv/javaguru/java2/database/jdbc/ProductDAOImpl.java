@@ -27,7 +27,6 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
             statement.setString(1, product.getName());
             statement.setString(2, product.getDescription());
             statement.setLong(3, product.getOwnerID());
-
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
             if (rs.next()) product.setProductID(rs.getLong(1));

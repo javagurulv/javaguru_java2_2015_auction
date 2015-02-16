@@ -24,14 +24,14 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
         try {
             connection = getConnection();
             PreparedStatement statement =
-                    connection.prepareStatement("INSERT into products values(DEFAULT, ?, ?, ?, ?, ?, ?, ? )", Statement.RETURN_GENERATED_KEYS);
+                    connection.prepareStatement("INSERT into products values(DEFAULT, ?, ?, ?, ?, ?, ? )", Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, product.getName());
             statement.setString(2, product.getDescription());
             statement.setBoolean(3, product.getStatus());
             statement.setString(4, product.getImage());
             statement.setDouble(5, product.getPrice());
             statement.setLong(6, product.getOwnerID());
-            statement.setLong(7, product.getCategory().getCategoryId());
+            //statement.setLong(7, product.getCategory().getCategoryId());
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
             if (rs.next()) product.setProductID(rs.getLong(1));
@@ -61,6 +61,11 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
                 product.setName(rs.getString("Name"));
                 product.setDescription(rs.getString("Description"));
                 product.setOwnerID(rs.getLong("OwnerID"));
+                //product.setCategory(new ProductCategory());
+                product.setImage(rs.getString("Image"));
+                product.setPrice(rs.getDouble("Price"));
+                product.setStatus(rs.getBoolean("Status"));
+
             }
             return product;
         } catch (SQLException e) {
@@ -99,15 +104,15 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
         try {
             PreparedStatement statement =
                     connection.prepareStatement("UPDATE products SET Name = ?, Description = ?," +
-                            "OwnerID = ?, Status =?, Image=?, Price=?, OwnerID=?, CategoryID=?  where ProductID = ?");
+                            " Status =?, Image=?, Price=?, OwnerID=? where ProductID = ?");
             statement.setString(1, product.getName());
             statement.setString(2, product.getDescription());
             statement.setBoolean(3, product.getStatus());
             statement.setString(4, product.getImage());
             statement.setDouble(5, product.getPrice());
             statement.setLong(6, product.getOwnerID());
-            statement.setLong(7, product.getCategory().getCategoryId());
-            statement.setLong(8, product.getProductID());
+            //statement.setLong(7, product.getCategory().getCategoryId());
+            statement.setLong(7, product.getProductID());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -129,14 +134,15 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
 
             ResultSet rs = statement.executeQuery();
             while(rs.next()){
-                Product product= new Product();
+                Product product = new Product();
                 product.setProductID(rs.getLong("ProductID"));
                 product.setName(rs.getString("Name"));
                 product.setDescription(rs.getString("Description"));
                 product.setOwnerID(rs.getLong("OwnerID"));
-                product.setCategory(new ProductCategory());
-                product.setImage(rs.getString("Category"));
-
+                //product.setCategory(new ProductCategory());
+                product.setImage(rs.getString("Image"));
+                product.setPrice(rs.getDouble("Price"));
+                product.setStatus(rs.getBoolean("Status"));
                 products.add(product);
             }
         } catch (SQLException e) {

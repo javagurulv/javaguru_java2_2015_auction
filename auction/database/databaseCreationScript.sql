@@ -22,7 +22,7 @@ AUTO_INCREMENT = 1002;
 -- -----------------------------------------------------
 -- Category table
 -- -----------------------------------------------------
-drop table `Java2_test`.`categories`;
+drop table if exists `Java2_test`.`categories`;
 CREATE TABLE IF NOT EXISTS `Java2_test`.`categories` (
   `CategoryID` INT(11) NOT NULL AUTO_INCREMENT,
   `Name` CHAR(32) NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`categories` (
 -- ------------------------------------------------------
 -- Product table
 -- ------------------------------------------------------
-drop table `Java2_test`.`products`;
+drop table if exists   `Java2_test`.`products`;
 CREATE TABLE IF NOT EXISTS `Java2_test`.`products` (
   `ProductID` INT(11) NOT NULL AUTO_INCREMENT,
   `Name` CHAR(32) NOT NULL,
@@ -41,12 +41,12 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`products` (
   `Status` BOOL,
   `Image` CHAR(30),
   `Price` DECIMAL(10,2),
-  `UserID` INT(11) NOT NULL,
-  `CategoryID` INT(11) NOT NULL,
-  PRIMARY KEY (`ProductID`),
-  CONSTRAINT UserOwnsProduct FOREIGN KEY (UserID) REFERENCES users(UserID)
-    ON DELETE CASCADE,
-  FOREIGN KEY (CategoryID) REFERENCES categories(CategoryID)
+  `OwnerID` INT(11) NOT NULL,
+--  `CategoryID` INT(11) NOT NULL,
+  PRIMARY KEY (`ProductID`)
+-- CONSTRAINT UserOwnsProduct FOREIGN KEY (UserID) REFERENCES users(UserID)
+--  ON DELETE CASCADE
+--  FOREIGN KEY (CategoryID) REFERENCES categories(CategoryID)
 )
   ENGINE = InnoDB
   AUTO_INCREMENT = 102;

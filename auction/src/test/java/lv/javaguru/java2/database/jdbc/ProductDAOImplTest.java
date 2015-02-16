@@ -83,7 +83,7 @@ public class ProductDAOImplTest {
 
         assert(product1.getName()=="F2");
         assert(product1.getDescription()=="L2");
-        assert(product1.getOwnerID()==1);
+        assert(product1.getOwnerID()==2);
     }
     //Feel free to write your own!
 
@@ -92,7 +92,11 @@ public class ProductDAOImplTest {
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);
+        product.setPrice(25.5);
+        product.setImage("root/");
+        product.setStatus(true);
         product.setOwnerID(id);
+
         return product;
     }
 

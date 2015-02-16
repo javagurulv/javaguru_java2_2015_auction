@@ -28,8 +28,8 @@ create table if not exists  `Java2_test`.`products`(
   `Name` varchar(35) not null,
   `Description` varchar(3000),
   `OwnerID` int(11) not null,
-  primary key(`ProductID`),
-  foreign key(`OwnerID`) references users(`UserID`)
+  primary key(`ProductID`)
+ -- foreign key(`OwnerID`) references users(`UserID`)
 )
   ENGINE = InnoDB
   AUTO_INCREMENT = 1002;

@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`products` (
   `OwnerID` INT(11) NOT NULL,
 --  `CategoryID` INT(11) NOT NULL,
   PRIMARY KEY (`ProductID`),
-  CONSTRAINT UserOwnsProduct FOREIGN KEY (UserID) REFERENCES users(UserID)
+  CONSTRAINT UserOwnsProduct FOREIGN KEY (OwnerID) REFERENCES users(UserID)
 --  ON DELETE CASCADE
 --  FOREIGN KEY (CategoryID) REFERENCES categories(CategoryID)
 )

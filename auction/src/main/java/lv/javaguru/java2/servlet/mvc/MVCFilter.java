@@ -19,6 +19,8 @@ public class MVCFilter implements Filter {
         controllerMapping = new HashMap<String, MVCController>();
         controllerMapping.put("/hello", new HelloWorldController());
         controllerMapping.put("/prod", new ProdPageController());
+        controllerMapping.put("/raw", new RawPageController());
+        controllerMapping.put("/register", new RegisterPageController());
     }
     @Override
     public void doFilter(ServletRequest request,

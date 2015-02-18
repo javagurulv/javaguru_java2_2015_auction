@@ -1,0 +1,114 @@
+/* --------------- -------------- ------------------ --
+   Feel free to write your own specific components here!
+   ..by Vladislav
+/* --------------- -------------- ------------------- -
+
+/* Items from page where user should select a product */
+/* Merch list */
+.request-wrap{
+	height: 850px;
+	border: 1px solid black;
+}
+
+.merch-list{
+	margin: 0;
+	width: 100%;
+	height: 785px;
+}
+
+.record {
+	width: 96%;
+	margin: 20px 2%;
+	height: 125px;
+	padding: 15px 0 15px 0;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.record img{
+	height: 100%;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	float: left;
+	margin-right: 15px;
+}
+
+.record span{
+	display: inline;
+	margin: 0 0 0 0px;
+	font-size: 18px;
+}
+
+.record p{
+	font-size: 14px;
+}
+
+/* Req container */
+.req-container{
+	border: 1px solid black;
+	float: left;
+	width: 67%;
+	height: 92%;
+	margin: 20px 2%;
+}
+.req-container p{
+	font-size: 12px;
+	margin: 15px 0px -15px 15px;
+}
+
+/* Category list */
+.category-list{
+	width: 25%;
+	margin: 20px 0 20px 2%;
+	height: 785px;
+	border: 1px solid black;
+}
+.category-list h1{
+	font-size: 19px;
+	margin-left: 15px;
+}
+.category-list ul li{
+	margin:8px;
+}
+.category-list ul li span{
+	color: gray;
+	font-size: 12px;
+}
+/* Items from registration page */
+.registr-wrap{
+	border: 1px solid black;
+	height: 300px;
+}
+
+.registr-wrap table{
+	
+	width: 50%;
+	margin: auto;
+}
+.registr-wrap td{
+	border: 1px solid gray;
+}
+.registr-wrap th{
+padding: 15px;
+}
+
+.col1{
+	width: 45%;
+}
+.inright{
+	text-align: right;
+	padding: 3px;
+}
+
+.col2{
+	width: 55%;
+}
+
+.reg-bottom{
+	text-align: center;
+}
+.reg-bottom input{
+	color: black;
+	width: 300px;
+}

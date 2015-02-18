@@ -27,7 +27,7 @@ public class ProductCategoryDAOImpl extends DAOImpl implements ProductCategoryDA
         try {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("insert into productsCategory values (default, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    connection.prepareStatement("insert into categories values (default, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, productCategory.getName());
 
             preparedStatement.executeUpdate();
@@ -52,13 +52,13 @@ public class ProductCategoryDAOImpl extends DAOImpl implements ProductCategoryDA
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("select * from productsCategory where categoryId = ?");
+                    .prepareStatement("select * from categories where CategoryID = ?");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             ProductCategory productCategory = null;
             if (resultSet.next()) {
                 productCategory = new ProductCategory();
-                productCategory.setCategoryId(resultSet.getLong("categoryId"));
+                productCategory.setCategoryId(resultSet.getLong("CategoryID"));
                 productCategory.setName(resultSet.getString("Name"));
             }
             return productCategory;
@@ -77,7 +77,7 @@ public class ProductCategoryDAOImpl extends DAOImpl implements ProductCategoryDA
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("delete from productsCategory where categoryId = ?");
+                    .prepareStatement("delete from categories where CategoryID = ?");
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
@@ -100,8 +100,8 @@ public class ProductCategoryDAOImpl extends DAOImpl implements ProductCategoryDA
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("update productsCategory set Name = ?" +
-                            "where categoryId = ?");
+                    .prepareStatement("update categories set Name = ?" +
+                            "where CategoryID = ?");
             preparedStatement.setString(1, productCategory.getName());
             preparedStatement.setLong(2, productCategory.getCategoryId());
             preparedStatement.executeUpdate();
@@ -121,12 +121,12 @@ public class ProductCategoryDAOImpl extends DAOImpl implements ProductCategoryDA
         Connection connection = null;
         try {
             connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from productsCategory");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from categories");
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 ProductCategory productCategory = new ProductCategory();
-                productCategory.setCategoryId(resultSet.getLong("categoryId"));
+                productCategory.setCategoryId(resultSet.getLong("CategoryID"));
                 productCategory.setName(resultSet.getString("Name"));
                 productsCategory.add(productCategory);
             }

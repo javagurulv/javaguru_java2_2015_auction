@@ -7,6 +7,7 @@
 <body>
 
 <%=(String)request.getAttribute("model")%>
+${pageContext.request.contextPath}
 
 </body>
 </html>

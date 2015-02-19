@@ -3,9 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.Product;
 import lv.javaguru.java2.domain.User;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import java.util.List;
 
@@ -17,19 +15,28 @@ import static org.junit.Assert.assertNotNull;
  */
 public class ProductDAOImplTest {
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
-
     private ProductDAOImpl productDAO = new ProductDAOImpl();
+    private UserDAOImpl userDAO = new UserDAOImpl();
 
+
+
+    public static void cleanUp() throws DBException {
+        DatabaseCleaner databaseCleaner1 = new DatabaseCleaner();
+        databaseCleaner1.cleanDatabase();
+    }
 
     @Before
-    @After
     public void init() throws DBException {
         databaseCleaner.cleanDatabase();
+
     }
+
 
     @Test
     public void testCreate() throws DBException {
-        Product product = createProduct("F", "L", 1);
+        User user1 = createUser();
+        userDAO.create(user1);
+        Product product = createProduct("F", "L", user1.getUserId());
 
         productDAO.create(product);
 
@@ -44,8 +51,10 @@ public class ProductDAOImplTest {
 
     @Test
     public void testMultipleProductCreation() throws DBException {
-        Product product1 = createProduct("F1", "L1", 1);
-        Product product2 = createProduct("F2", "L2", 2);
+        User user1 = createUser();
+        userDAO.create(user1);
+        Product product1 = createProduct("F1", "L1", user1.getUserId());
+        Product product2 = createProduct("F2", "L2", user1.getUserId());
         productDAO.create(product1);
         productDAO.create(product2);
         List<Product> products = productDAO.getAll();
@@ -54,7 +63,9 @@ public class ProductDAOImplTest {
 
     @Test
     public void testGetById() throws DBException {
-        Product product1 = createProduct("F1", "L1", 1);
+        User user1 = createUser();
+        userDAO.create(user1);
+        Product product1 = createProduct("F1", "L1", user1.getUserId());
         productDAO.create(product1);
 
         Product returnedProduct = productDAO.getById(product1.getProductID());
@@ -63,7 +74,9 @@ public class ProductDAOImplTest {
 
     @Test
     public void testDelete() throws DBException {
-        Product product = createProduct("F4", "L4", 4);
+        User user1 = createUser();
+        userDAO.create(user1);
+        Product product = createProduct("F4", "L4", user1.getUserId());
         productDAO.create(product);
 
         productDAO.delete(product.getProductID());
@@ -72,32 +85,41 @@ public class ProductDAOImplTest {
 
     @Test
     public void testUpdate() throws DBException {
-        Product product1 = createProduct("F1", "L1", 1);
+        User user1 = createUser();
+        userDAO.create(user1);
+        Product product1 = createProduct("F1", "L1", user1.getUserId());
         productDAO.create(product1);
 
         product1.setName("F2");
         product1.setDescription("L2");
-        product1.setOwnerID(2);
+        product1.setOwnerID(user1.getUserId());
 
         productDAO.update(product1);
 
         assert(product1.getName()=="F2");
         assert(product1.getDescription()=="L2");
-        assert(product1.getOwnerID()==2);
+        assert(product1.getOwnerID()==user1.getUserId());
     }
     //Feel free to write your own!
 
     //Customize this one as you like!
-    private Product createProduct(String name, String description, long id) {
+    private Product createProduct(String name, String description, long ownerID) {
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);
-        product.setPrice(25.5);
+        product.setPrice(0);
         product.setImage("root/");
         product.setStatus(true);
-        product.setOwnerID(id);
+        product.setOwnerID(ownerID);
 
         return product;
+    }
+
+    private User createUser() {
+        User user = new User();
+        user.setFirstName("TestUser");
+        user.setLastName("TestUser");
+        return user;
     }
 
 }

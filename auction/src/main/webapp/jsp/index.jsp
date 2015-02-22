@@ -26,7 +26,7 @@
             <span>Logo</span>
         </div>
         <div class="account">
-            <form action="register.html">
+            <form action="<%=request.getContextPath()%>/register">
                 <button>Регистрация</button>
             </form>
             <form name="account" action="#" method="post">

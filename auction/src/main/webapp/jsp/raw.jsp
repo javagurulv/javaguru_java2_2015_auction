@@ -26,7 +26,7 @@
             <span>Logo</span>
         </div>
         <div class="account">
-            <form action="register.html">
+            <form action="<%=request.getContextPath()%>/register">
                 <button>Регистрация</button>
             </form>
             <form name="account" action="#" method="post">
@@ -40,9 +40,7 @@
         <h1>Главный банер</h1>
     </div> <!-- End of content-wrap -->
     <nav>
-        <div>
-            Главная
-        </div>
+        <a href="<%=request.getContextPath()%>/index"><div>Главная</div></a>
         <div>
             Торговля
         </div>

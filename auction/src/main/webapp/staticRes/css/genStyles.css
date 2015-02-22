@@ -10,6 +10,10 @@ body{
 	font-family: Arial;
 }
 
+a{
+    color: black;
+}
+
 input{
 	color: #494949;
 	padding-left: 6px;

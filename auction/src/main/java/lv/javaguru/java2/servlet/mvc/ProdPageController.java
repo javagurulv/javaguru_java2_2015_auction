@@ -11,7 +11,7 @@ public class ProdPageController implements MVCController{
     @Override
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
         String message = "Hello from MVC!";
-        MVCModel model = new MVCModel("/jsp/prod.jsp", message);
+        MVCModel model = new MVCModel("/jsp/searchRes.jsp", message);
         return model;
     }
 }

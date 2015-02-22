@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by Vladislav on 2/17/2015.
  */
-public class ProdPageController implements MVCController {
+public class SearchResController implements MVCController {
 
     @Override
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {

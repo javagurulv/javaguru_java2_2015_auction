@@ -20,13 +20,13 @@ public class MVCFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
         controllerMapping = new HashMap<String, MVCController>();
         controllerMapping.put("/hello", new HelloWorldController());
-        controllerMapping.put("/prod", new ProdPageController());
+        controllerMapping.put("/prod", new SearchResController());
         controllerMapping.put("/raw", new RawPageController());
         controllerMapping.put("/register", new RegisterPageController());
         controllerMapping.put("/description", new ProdDescripPageController());
         controllerMapping.put("/index", new IndexController());
         controllerMapping.put("/balance", new BalancePageController());
-        controllerMapping.put("/onSale", new OnSaleController());
+        controllerMapping.put("/onSale", new onSaleController());
     }
     @Override
     public void doFilter(ServletRequest request,

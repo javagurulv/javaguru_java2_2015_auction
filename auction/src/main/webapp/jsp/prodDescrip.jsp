@@ -58,9 +58,12 @@
         </form>
     </div>
     <div  class="content">
-        <!-- add your stuff here -->
-        content
 
+        <h1>Title</h1> <!--No comments needed, but ok, Title-->
+        Description: description<!-- Product description must be here--><br/>
+        Category: Great<!--Product category--><br/>
+        Price: 9.99$ <!--Product price--> <button type="submit">BUY</button> <br/>
+        <img src="<%=resPath%>/images/cat.jpg"/> <!--image of the product--> Date: <time>2.01.2015</time>
 
 
         <!-- ------------------- -->

@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by Vladislav on 2/22/2015.
  */
-public class onSaleController implements MVCController {
+public class UserSalesController implements MVCController {
     @Override
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
-        MVCModel model = new MVCModel("/jsp/onSale.jsp", null);
+        MVCModel model = new MVCModel("/jsp/userSales.jsp", null);
         return model;
     }
 }

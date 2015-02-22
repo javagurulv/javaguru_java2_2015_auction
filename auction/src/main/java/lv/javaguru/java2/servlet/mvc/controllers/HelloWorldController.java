@@ -1,4 +1,6 @@
-package lv.javaguru.java2.servlet.mvc;
+package lv.javaguru.java2.servlet.mvc.controllers;
+import lv.javaguru.java2.servlet.mvc.MVCModel;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 public class HelloWorldController implements MVCController {

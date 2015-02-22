@@ -1,4 +1,6 @@
 package lv.javaguru.java2.servlet.mvc;
+import lv.javaguru.java2.servlet.mvc.controllers.*;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;

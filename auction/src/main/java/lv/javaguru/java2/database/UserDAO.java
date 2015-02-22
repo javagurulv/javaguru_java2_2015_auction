@@ -7,6 +7,6 @@ import java.util.List;
 /**
  * Created by Viktor on 01/07/2014.
  */
-public interface UserDAO extends BaseDAO<User> {
+public interface UserDAO {
 //Unique User class method signatures
 }

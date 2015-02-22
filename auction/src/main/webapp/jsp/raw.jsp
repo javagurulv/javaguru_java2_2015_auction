@@ -44,13 +44,13 @@
             Главная
         </div>
         <div>
-            Кнопка
+            Торговля
         </div>
         <div>
-            Кнопка
+            Управление
         </div>
         <div>
-            Кнопка
+            О нас
         </div>
     </nav> <!-- End of navigation -->
     <div class="search-bar">

@@ -22,6 +22,7 @@ public class MVCFilter implements Filter {
         controllerMapping.put("/raw", new RawPageController());
         controllerMapping.put("/register", new RegisterPageController());
         controllerMapping.put("/description", new ProdDescripPageController());
+        controllerMapping.put("/index", new IndexController());
     }
     @Override
     public void doFilter(ServletRequest request,

@@ -57,12 +57,6 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements UserDAO {
     }
 
     @Override
-    protected String getSelectAllLine() {
-        return SELECT_LINE;
-    }
-
-
-    @Override
     protected void setInsertArguments(PreparedStatement statement, User user) throws SQLException {
         statement.setString(1, user.getFirstName());
         statement.setString(2, user.getLastName());
@@ -91,6 +85,10 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements UserDAO {
         user.setUserId(id);
     }
 
+    @Override
+    protected String getSelectAllLine() {
+        return SELECT_LINE;
+    }
     @Override
     protected String getUpdateLine() {
         return UPDATE_LINE;

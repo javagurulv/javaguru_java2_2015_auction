@@ -1,9 +1,15 @@
 package lv.javaguru.java2.servlet.mvc;
+import lv.javaguru.java2.servlet.SpringAppConfig;
 import lv.javaguru.java2.servlet.mvc.controllers.*;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -16,17 +22,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 public class MVCFilter implements Filter {
     private Map<String, MVCController> controllerMapping;
+    private ApplicationContext springContext;
+
+    private static Logger logger = Logger.getLogger(MVCFilter.class.getName());
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        controllerMapping = new HashMap<String, MVCController>();
-        controllerMapping.put("/hello", new HelloWorldController());
-        controllerMapping.put("/prod", new SearchResController());
-        controllerMapping.put("/raw", new RawPageController());
-        controllerMapping.put("/register", new RegisterPageController());
-        controllerMapping.put("/description", new ProdDescripPageController());
-        controllerMapping.put("/index", new IndexController());
-        controllerMapping.put("/balance", new BalancePageController());
-        controllerMapping.put("/onSale", new UserSalesController());
+        try {
+            springContext =
+                    new AnnotationConfigApplicationContext(SpringAppConfig.class);
+        } catch (BeansException e) {
+            logger.log(Level.INFO, "Spring context failed to start", e);
+        }
+
+
+        controllerMapping =  new HashMap<String, MVCController>();
+        controllerMapping.put("/hello",  getBean( HelloWorldController.class));
+        controllerMapping.put("/prod",  getBean( SearchResController.class));
+        controllerMapping.put("/raw",  getBean( RawPageController.class));
+        controllerMapping.put("/register",  getBean( RegisterPageController.class));
+        controllerMapping.put("/description",  getBean( ProdDescripPageController.class));
+        controllerMapping.put("/index",  getBean( IndexController.class));
+        controllerMapping.put("/balance",  getBean( BalancePageController.class));
+        controllerMapping.put("/onSale",  getBean( UserSalesController.class));
     }
     @Override
     public void doFilter(ServletRequest request,
@@ -55,4 +73,9 @@ public class MVCFilter implements Filter {
     @Override
     public void destroy() {
     }
+
+    private MVCController getBean(Class clazz){
+        return (MVCController) springContext.getBean(clazz);
+    }
+
 }

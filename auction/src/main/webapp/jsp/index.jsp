@@ -20,24 +20,24 @@
         <h1 class="content-header">Главная</h1>
         <h2>Рекомендуемые предложения</h2>
         <div class="record-line">
-        <% for(int i = 0; i < 4; i++) { %> <!-- Showing 4 records with java -->
-            <div class="inline-record">
-                <div class="image-container"><img src="https://placekitten.com/g/230/230"/></div>
-                <h1>Самый лучший в мире котик</h1>
-                <p>Цена: <em>150$</em><p>
-                <span>22.02.15</span>
-            </div>
-        <%}%>
+            <% for(int i = 0; i < 4; i++) { %> <!-- Showing 4 records with java -->
+                <div class="inline-record">
+                    <div class="image-container"><img src="https://placekitten.com/g/230/230"/></div>
+                    <h1>Самый лучший в мире котик</h1>
+                    <p>Цена: <em>150$</em><p>
+                    <span>22.02.15</span>
+                </div>
+            <%}%>
         </div><!-- End of record-line -->
         <h2>Последние просмотренные</h2>
         <div class="record-line">
             <% for(int i = 0; i < 4; i++) { %> <!-- Showing 4 records with java -->
-            <div class="inline-record">
-                <div class="image-container"><img src="https://placekitten.com/g/230/230"/></div>
-                <h1>Самый лучший в мире котик</h1>
-                <p>Цена: <em>150$</em><p>
-                <span>22.02.15</span>
-            </div>
+                <div class="inline-record">
+                    <div class="image-container"><img src="https://placekitten.com/g/230/230"/></div>
+                    <h1>Самый лучший в мире котик</h1>
+                    <p>Цена: <em>150$</em><p>
+                    <span>22.02.15</span>
+                </div>
             <%}%>
         </div><!-- End of record-line 2-->
     </div> <!-- End of content -->

@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="search-bar">
-    <form name="search" action="list.html" method="get">
+    <form name="search" action="<%=request.getContextPath()%>/prod" method="get">
         <button type="submit">Искать</button>
         <input type="text" name="q" placeholder="Поиск">
     </form>

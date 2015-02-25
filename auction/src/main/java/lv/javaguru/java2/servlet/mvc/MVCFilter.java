@@ -45,6 +45,7 @@ public class MVCFilter implements Filter {
         controllerMapping.put("/index",  getBean( IndexController.class));
         controllerMapping.put("/balance",  getBean( BalancePageController.class));
         controllerMapping.put("/onSale",  getBean( UserSalesController.class));
+        controllerMapping.put("/add", getBean( AddPageController.class));
     }
     @Override
     public void doFilter(ServletRequest request,

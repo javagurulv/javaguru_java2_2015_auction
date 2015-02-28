@@ -2,6 +2,7 @@ package lv.javaguru.java2.database.jdbc;
 
 import static org.junit.Assert.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class UserDAOImplTest {
 
     @Test
     public void testCreate() throws DBException {
-        User user = createUser("F", "L");
+        User user = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
 
         userDAO.create(user);
 
@@ -37,12 +38,17 @@ public class UserDAOImplTest {
         assertEquals(user.getUserId(), userFromDB.getUserId());
         assertEquals(user.getFirstName(), userFromDB.getFirstName());
         assertEquals(user.getLastName(), userFromDB.getLastName());
+        assertEquals(user.getLogin(), userFromDB.getLogin());
+        assertEquals(user.getPassword(), userFromDB.getPassword());
+        assertEquals(user.getBalance(), userFromDB.getBalance());
+        assertEquals(user.getEmail(), userFromDB.getEmail());
+        assertEquals(user.getAvatar(), userFromDB.getAvatar());
     }
 
     @Test
     public void testMultipleUserCreation() throws DBException {
-        User user1 = createUser("F1", "L1");
-        User user2 = createUser("F2", "L2");
+        User user1 = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
+        User user2 = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
         userDAO.create(user1);
         userDAO.create(user2);
         List<User> users = userDAO.getAll();
@@ -52,7 +58,7 @@ public class UserDAOImplTest {
 
     @Test
     public void testGetById() throws DBException {
-        User user1 = createUser("F1", "L1");
+        User user1 = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
         userDAO.create(user1);
 
         User returnedUser = userDAO.getById(user1.getUserId());
@@ -61,7 +67,7 @@ public class UserDAOImplTest {
 
     @Test
     public void testDelete() throws DBException {
-        User user = createUser("F4", "L4");
+        User user = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
         userDAO.create(user);
 
         userDAO.delete(user.getUserId());
@@ -70,22 +76,37 @@ public class UserDAOImplTest {
 
     @Test
     public void testUpdate() throws DBException {
-        User user1 = createUser("F1", "L1");
+        User user1 = createUser("F1", "L1", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
         userDAO.create(user1);
 
         user1.setFirstName("F2");
         user1.setLastName("L2");
-
+        user1.setLogin("Login2");
+        user1.setPassword("pass2");
+        user1.setBalance(new BigDecimal("99.99"));
+        user1.setEmail("test2@test2.lv");
+        user1.setAvatar("avatar2.img");
         userDAO.update(user1);
 
-        assert(user1.getFirstName()=="F2");
-        assert(user1.getLastName()=="L2");
+
+        User userFromDB = userDAO.getById(user1.getUserId());
+
+        assertEquals(user1.getFirstName(), userFromDB.getFirstName());
+        assertEquals(user1.getLastName(), userFromDB.getLastName());
     }
 
-    private User createUser(String firstName, String lastName) {
+    private User createUser(String firstName, String lastName, String login, String password,
+                            BigDecimal balance, String email, String avatar) {
+
         User user = new User();
         user.setFirstName(firstName);
         user.setLastName(lastName);
+        user.setLogin(login);
+        user.setPassword(password);
+        user.setBalance(balance);
+        user.setEmail(email);
+        user.setAvatar(avatar);
+
         return user;
     }
 

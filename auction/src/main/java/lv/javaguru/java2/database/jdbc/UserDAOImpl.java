@@ -13,9 +13,9 @@ import java.util.List;
  * Created by Viktor on 01/07/2014.
  */
 public class UserDAOImpl extends BaseDAOImpl<User> implements UserDAO {
-    private String INSERT_LINE ="insert into users values (default, ?, ?)";
+    private String INSERT_LINE ="insert into users values (default, ?, ?, ?, ?, ?, ?, ?)";
     private String SELECT_LINE ="select * from users";
-    private String UPDATE_LINE ="update users set FirstName = ?, LastName = ? where UserID = ?";
+    private String UPDATE_LINE ="update users set FirstName = ?, LastName = ?, Login = ?, Password = ?, Balance = ?, Email = ?, Avatar = ? where UserID = ?";
     private String DELETE_LINE ="delete from users where UserID = ?";
     private String SELECT_BY_ID_LINE ="select * from users where UserID = ?";
 
@@ -52,6 +52,11 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements UserDAO {
             user.setUserId(rs.getLong("UserID"));
             user.setFirstName(rs.getString("FirstName"));
             user.setLastName(rs.getString("LastName"));
+            user.setLogin(rs.getString("Login"));
+            user.setPassword(rs.getString("Password"));
+            user.setBalance(rs.getBigDecimal("Balance"));
+            user.setEmail(rs.getString("Email"));
+            user.setAvatar(rs.getString("Avatar"));
             entities.add(user);
         }
     }
@@ -60,13 +65,24 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements UserDAO {
     protected void setInsertArguments(PreparedStatement statement, User user) throws SQLException {
         statement.setString(1, user.getFirstName());
         statement.setString(2, user.getLastName());
+        statement.setString(3, user.getLogin());
+        statement.setString(4, user.getPassword());
+        statement.setBigDecimal(5, user.getBalance());
+        statement.setString(6, user.getEmail());
+        statement.setString(7, user.getAvatar());
     }
 
     @Override
     protected void setUpdateArguments(PreparedStatement statement, User user) throws SQLException {
         statement.setString(1, user.getFirstName());
         statement.setString(2, user.getLastName());
-        statement.setLong(3, user.getUserId());
+        statement.setString(3, user.getLogin());
+        statement.setString(4, user.getPassword());
+        statement.setBigDecimal(5, user.getBalance());
+        statement.setString(6, user.getEmail());
+        statement.setString(7, user.getAvatar());
+        statement.setLong(8, user.getUserId());
+
     }
 
     @Override
@@ -76,6 +92,12 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements UserDAO {
             user.setUserId(rs.getLong("UserID"));
             user.setFirstName(rs.getString("FirstName"));
             user.setLastName(rs.getString("LastName"));
+            user.setLogin(rs.getString("Login"));
+            user.setPassword(rs.getString("Password"));
+            user.setBalance(rs.getBigDecimal("Balance"));
+            user.setEmail(rs.getString("Email"));
+            user.setAvatar(rs.getString("Avatar"));
+
         }
         return user;
     }

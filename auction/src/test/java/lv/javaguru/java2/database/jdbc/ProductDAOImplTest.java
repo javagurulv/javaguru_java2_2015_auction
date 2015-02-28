@@ -26,6 +26,7 @@ public class ProductDAOImplTest {
     }
 
     @Before
+    @After
     public void init() throws DBException {
         databaseCleaner.cleanDatabase();
 

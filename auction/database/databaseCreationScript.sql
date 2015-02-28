@@ -14,6 +14,11 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`users` (
   `UserID` INT(11) NOT NULL AUTO_INCREMENT,
   `FirstName` CHAR(32) NOT NULL,
   `LastName` CHAR(32) NOT NULL,
+  `Login` CHAR(16) NOT NULL,
+  `Password` CHAR(80) NOT NULL,
+  `Balance` DECIMAL(10,2),
+  `Email` CHAR(30),
+  `Avatar` CHAR(30),
   PRIMARY KEY (`UserID`)
 )
 ENGINE = InnoDB

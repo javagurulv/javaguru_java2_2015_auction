@@ -15,7 +15,8 @@
     <form action="<%=request.getContextPath()%>/register">
         <button>Регистрация</button>
     </form>
-    <form name="account" action="#" method="post">
+    <form name="account-form" action="<%=request.getContextPath()%>/auth" method="post">
+        <input type="hidden" name="type" value="account-form" />
         <input type="text" name="login" placeholder="Логин">
         <input type="password" name="password" placeholder="Пароль">
         <button type="submit">Войти</button>

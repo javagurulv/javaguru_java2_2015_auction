@@ -14,15 +14,17 @@ import javax.servlet.http.HttpSession;
 @Component
 public class AccountManager {
     private UserDAOImpl userDAO = new UserDAOImpl(); // Upgrade it to spring
-    
+
     private User getValidatedUser(String login, String password) throws LoginException {
         try {
             User user = userDAO.getByLogin(login);
-            if (user.getPassword().equals(password)) return user;
+            if (user == null) throw new LoginException("incorrect login");
+            else if (user.getPassword().equals(password)) return user;
             else throw new LoginException("incorrect password");
+
         } catch (DBException e) {
             e.printStackTrace();
-            throw new LoginException("incorrect Login");
+            throw new LoginException("db exception!");
         }
 
     }

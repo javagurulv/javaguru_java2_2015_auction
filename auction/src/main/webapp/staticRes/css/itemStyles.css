@@ -351,7 +351,6 @@ padding: 15px;
 
 }
 .button-container{
-    border-top: 1px solid black;
     padding-top: 15px;
     border-bottom: 1px solid black;
     height: 35px;
@@ -360,4 +359,25 @@ padding: 15px;
 .product-form div{
     padding-bottom: 12px;
     margin-top: 18px;
+}
+
+/* Registered header */
+.balance, .avatar, .name{
+    float: right;
+}
+.name{
+    height: 100%;
+    padding: 4px;
+    margin: 6px 5px 0 48px;
+}
+.balance img{
+    height: 29px;
+    vertical-align: middle;
+}
+.avatar img{
+    height: 29px;
+    border-radius: 15px;
+    vertical-align: middle;
+    margin-right: 15px;
+    margin-left: 5px;
 }

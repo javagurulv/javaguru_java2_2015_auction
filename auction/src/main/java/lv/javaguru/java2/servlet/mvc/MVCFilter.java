@@ -35,7 +35,6 @@ public class MVCFilter implements Filter {
             logger.log(Level.INFO, "Spring context failed to start", e);
         }
 
-
         controllerMapping =  new HashMap<String, MVCController>();
         controllerMapping.put("/hello",  getBean(HelloWorldController.class));
         controllerMapping.put("/prod",  getBean(SearchResController.class));
@@ -46,6 +45,7 @@ public class MVCFilter implements Filter {
         controllerMapping.put("/balance",  getBean(BalancePageController.class));
         controllerMapping.put("/onSale",  getBean(UserSalesController.class));
         controllerMapping.put("/add", getBean(AddPageController.class));
+        controllerMapping.put("/auth", getBean(AuthorizationController.class));
     }
     @Override
     public void doFilter(ServletRequest request,
@@ -54,8 +54,8 @@ public class MVCFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest)request;
         HttpServletResponse resp = (HttpServletResponse)response;
-        String contextURI = req.getServletPath();
 
+        String contextURI = req.getServletPath();
         if (controllerMapping.keySet().contains(contextURI)){
             MVCController controller = controllerMapping.get(contextURI);
             MVCModel model = controller.processRequest(req, resp);
@@ -72,12 +72,10 @@ public class MVCFilter implements Filter {
     }
 
     @Override
-    public void destroy() {
-    }
+    public void destroy() {}
 
     private MVCController getBean(Class clazz)
     {
         return (MVCController) springContext.getBean(clazz);
     }
-
 }

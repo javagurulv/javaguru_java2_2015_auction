@@ -19,7 +19,7 @@
     Vasja123
 </div>
 <div class="balance">
-    <img src="<%=request.getContextPath()%>/staticRes/balance.jpg"/>
+    <img src="<%=request.getContextPath()%>/staticRes/images/balance.jpg"/>
     На счету: 110$
 </div>
 

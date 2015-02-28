@@ -7,22 +7,18 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<!-- This header context will be displayed if user have not logged in yet -->
+<div class="logo">
+    <span>Logo</span>
+</div>
+<div class="account">
+    <form action="<%=request.getContextPath()%>/register">
+        <button>Регистрация</button>
+    </form>
+    <form name="account" action="#" method="post">
+        <input type="text" name="login" placeholder="Логин">
+        <input type="password" name="password" placeholder="Пароль">
+        <button type="submit">Войти</button>
+    </form>
+</div>
 
-
-<header>
-    <div class="logo">
-        <span>Logo</span>
-    </div>
-
-    <div class="avatar">
-        <img src="http://99px.ru/sstorage/56/2011/01/image_562501111926578518190.jpg"/>
-    </div>
-    <div class="name">
-        Vasja123
-    </div>
-    <div class="balance">
-        <img src="<%=request.getContextPath()%>/staticRes/balance.jpg"/>
-        На счету: 110$
-    </div>
-
-</header> <!-- End of header -->

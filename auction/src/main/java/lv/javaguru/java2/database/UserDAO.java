@@ -15,5 +15,5 @@ public interface UserDAO {
 
     public void create(User user) throws DBException;
 
-    User getByLogin(String login) throws DBException;
+    public User getByLogin(String login) throws DBException;
 }

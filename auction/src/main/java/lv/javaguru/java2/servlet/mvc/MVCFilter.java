@@ -75,7 +75,8 @@ public class MVCFilter implements Filter {
     public void destroy() {
     }
 
-    private MVCController getBean(Class clazz){
+    private MVCController getBean(Class clazz)
+    {
         return (MVCController) springContext.getBean(clazz);
     }
 

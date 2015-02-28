@@ -1,3 +1,4 @@
+<%@ page import="lv.javaguru.java2.domain.User" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vladislav
@@ -7,19 +8,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%
+    User user = null;
+    user = (User)session.getAttribute("User");
+%>
 
 <header>
-    <div class="logo">
-        <span>Logo</span>
-    </div>
-    <div class="account">
-        <form action="<%=request.getContextPath()%>/register">
-            <button>Регистрация</button>
-        </form>
-        <form name="account" action="#" method="post">
-            <input type="text" name="login" placeholder="Логин">
-            <input type="password" name="password" placeholder="Пароль">
-            <button type="submit">Войти</button>
-        </form>
-    </div>
+    <% if (user==null){%>
+        <jsp:include page="components/headerLogin.jsp"/>
+    <%}else {%>
+        <jsp:include page="components/headerUser.jsp"/>
+    <%};%>
 </header> <!-- End of header -->

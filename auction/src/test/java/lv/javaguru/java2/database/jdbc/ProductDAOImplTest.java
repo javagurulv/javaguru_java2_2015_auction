@@ -5,6 +5,7 @@ import lv.javaguru.java2.domain.Product;
 import lv.javaguru.java2.domain.User;
 import org.junit.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -12,6 +13,7 @@ import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by Vladislav on 2/15/2015.
+ * Updated by Mark on 28.02.2015.
  */
 public class ProductDAOImplTest {
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
@@ -35,10 +37,11 @@ public class ProductDAOImplTest {
 
     @Test
     public void testCreate() throws DBException {
-        User user1 = createUser();
-        userDAO.create(user1);
-        Product product = createProduct("F", "L", user1.getUserId());
 
+        User user = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
+        userDAO.create(user);
+
+        Product product = createProduct("Car1", "Very heavy car!", true, "car.jpg", 999.99, user.getUserId());
         productDAO.create(product);
 
         Product productFromDB = productDAO.getById(product.getProductID());
@@ -46,38 +49,49 @@ public class ProductDAOImplTest {
         assertEquals(product.getProductID(), productFromDB.getProductID());
         assertEquals(product.getName(), productFromDB.getName());
         assertEquals(product.getDescription(), productFromDB.getDescription());
+        assertEquals(product.getStatus(), productFromDB.getStatus());
+        assertEquals(product.getImage(), productFromDB.getImage());
+        assertEquals(product.getPrice(), productFromDB.getPrice(), 0.001);
         assertEquals(product.getOwnerID(), productFromDB.getOwnerID());
 
     }
 
     @Test
     public void testMultipleProductCreation() throws DBException {
-        User user1 = createUser();
-        userDAO.create(user1);
-        Product product1 = createProduct("F1", "L1", user1.getUserId());
-        Product product2 = createProduct("F2", "L2", user1.getUserId());
+
+        User user = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
+        userDAO.create(user);
+
+        Product product1 = createProduct("Car1", "Very heavy car!", true, "car.jpg", 999.99, user.getUserId());
+        Product product2 = createProduct("Car2", "Very heavy car!", true, "car.jpg", 666.66, user.getUserId());
+
         productDAO.create(product1);
         productDAO.create(product2);
+
         List<Product> products = productDAO.getAll();
         assertEquals(2, products.size());
     }
 
     @Test
     public void testGetById() throws DBException {
-        User user1 = createUser();
-        userDAO.create(user1);
-        Product product1 = createProduct("F1", "L1", user1.getUserId());
-        productDAO.create(product1);
 
-        Product returnedProduct = productDAO.getById(product1.getProductID());
-        assert (product1.getName().equals(returnedProduct.getName()) );
+        User user = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
+        userDAO.create(user);
+
+        Product product = createProduct("Car1", "Very heavy car!", true, "car.jpg", 999.99, user.getUserId());
+        productDAO.create(product);
+
+        Product productFromDB = productDAO.getById(product.getProductID());
+        assert (product.getName().equals(productFromDB.getName()) );
     }
 
     @Test
     public void testDelete() throws DBException {
-        User user1 = createUser();
-        userDAO.create(user1);
-        Product product = createProduct("F4", "L4", user1.getUserId());
+
+        User user = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
+        userDAO.create(user);
+
+        Product product = createProduct("Car1", "Very heavy car!", true, "car.jpg", 999.99, user.getUserId());
         productDAO.create(product);
 
         productDAO.delete(product.getProductID());
@@ -86,40 +100,51 @@ public class ProductDAOImplTest {
 
     @Test
     public void testUpdate() throws DBException {
-        User user1 = createUser();
-        userDAO.create(user1);
-        Product product1 = createProduct("F1", "L1", user1.getUserId());
-        productDAO.create(product1);
 
-        product1.setName("F2");
-        product1.setDescription("L2");
-        product1.setOwnerID(user1.getUserId());
+        User user = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
+        userDAO.create(user);
 
-        productDAO.update(product1);
+        Product product = createProduct("Car1", "Very heavy car!", true, "car.jpg", 999.99, user.getUserId());
+        productDAO.create(product);
 
-        assert(product1.getName()=="F2");
-        assert(product1.getDescription()=="L2");
-        assert(product1.getOwnerID()==user1.getUserId());
+        product.setName("Bentley");
+        product.setDescription("Very expensive car!");
+        productDAO.update(product);
+
+        Product productFromDB = productDAO.getById(product.getProductID());
+
+        assertEquals(product.getName(), productFromDB.getName());
+        assertEquals(product.getDescription(), productFromDB.getDescription());
+        assertEquals(product.getOwnerID(), productFromDB.getOwnerID());
     }
-    //Feel free to write your own!
 
-    //Customize this one as you like!
-    private Product createProduct(String name, String description, long ownerID) {
+
+
+    private Product createProduct(String name, String description, boolean status, String image, double price, long ownerID) {
+
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);
-        product.setPrice(0);
-        product.setImage("root/");
-        product.setStatus(true);
+        product.setStatus(status);
+        product.setImage(image);
+        product.setPrice(price);
         product.setOwnerID(ownerID);
 
         return product;
     }
 
-    private User createUser() {
+    private User createUser(String firstName, String lastName, String login, String password,
+                            BigDecimal balance, String email, String avatar) {
+
         User user = new User();
-        user.setFirstName("TestUser");
-        user.setLastName("TestUser");
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setLogin(login);
+        user.setPassword(password);
+        user.setBalance(balance);
+        user.setEmail(email);
+        user.setAvatar(avatar);
+
         return user;
     }
 

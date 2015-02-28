@@ -47,8 +47,9 @@ public class UserDAOImplTest {
 
     @Test
     public void testMultipleUserCreation() throws DBException {
-        User user1 = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
-        User user2 = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
+        User user1 = createUser("Login1", "password1", "test1@test.lv");
+        User user2 = createUser("Login2", "password2", "test2@test.lv");
+
         userDAO.create(user1);
         userDAO.create(user2);
         List<User> users = userDAO.getAll();
@@ -67,7 +68,7 @@ public class UserDAOImplTest {
 
     @Test
     public void testDelete() throws DBException {
-        User user = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
+        User user = createUser("Login", "password", "test@test.lv");
         userDAO.create(user);
 
         userDAO.delete(user.getUserId());
@@ -76,7 +77,7 @@ public class UserDAOImplTest {
 
     @Test
     public void testUpdate() throws DBException {
-        User user1 = createUser("F1", "L1", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
+        User user1 = createUser("Login", "password", "test@test.lv");
         userDAO.create(user1);
 
         user1.setFirstName("F2");
@@ -106,6 +107,19 @@ public class UserDAOImplTest {
         user.setBalance(balance);
         user.setEmail(email);
         user.setAvatar(avatar);
+
+        return user;
+    }
+    private User createUser(String login, String password, String email){
+
+        User user = new User();
+        user.setFirstName("F1");
+        user.setLastName("L1");
+        user.setLogin(login);
+        user.setPassword(password);
+        user.setBalance(new BigDecimal(255));
+        user.setEmail(email);
+        user.setAvatar("/path");
 
         return user;
     }

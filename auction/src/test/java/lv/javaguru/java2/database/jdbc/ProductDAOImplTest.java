@@ -15,17 +15,12 @@ import static org.junit.Assert.assertNotNull;
  * Created by Vladislav on 2/15/2015.
  * Updated by Mark on 28.02.2015.
  */
+
 public class ProductDAOImplTest {
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
     private ProductDAOImpl productDAO = new ProductDAOImpl();
     private UserDAOImpl userDAO = new UserDAOImpl();
 
-
-
-    public static void cleanUp() throws DBException {
-        DatabaseCleaner databaseCleaner1 = new DatabaseCleaner();
-        databaseCleaner1.cleanDatabase();
-    }
 
     @Before
     @After

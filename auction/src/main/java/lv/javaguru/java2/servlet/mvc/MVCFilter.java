@@ -37,15 +37,15 @@ public class MVCFilter implements Filter {
 
 
         controllerMapping =  new HashMap<String, MVCController>();
-        controllerMapping.put("/hello",  getBean( HelloWorldController.class));
-        controllerMapping.put("/prod",  getBean( SearchResController.class));
-        controllerMapping.put("/raw",  getBean( RawPageController.class));
-        controllerMapping.put("/register",  getBean( RegisterPageController.class));
-        controllerMapping.put("/description",  getBean( ProdDescripPageController.class));
-        controllerMapping.put("/index",  getBean( IndexController.class));
-        controllerMapping.put("/balance",  getBean( BalancePageController.class));
-        controllerMapping.put("/onSale",  getBean( UserSalesController.class));
-        controllerMapping.put("/add", getBean( AddPageController.class));
+        controllerMapping.put("/hello",  getBean(HelloWorldController.class));
+        controllerMapping.put("/prod",  getBean(SearchResController.class));
+        controllerMapping.put("/raw",  getBean(RawPageController.class));
+        controllerMapping.put("/register",  getBean(RegisterPageController.class));
+        controllerMapping.put("/description",  getBean(ProdDescripPageController.class));
+        controllerMapping.put("/index",  getBean(IndexController.class));
+        controllerMapping.put("/balance",  getBean(BalancePageController.class));
+        controllerMapping.put("/onSale",  getBean(UserSalesController.class));
+        controllerMapping.put("/add", getBean(AddPageController.class));
     }
     @Override
     public void doFilter(ServletRequest request,

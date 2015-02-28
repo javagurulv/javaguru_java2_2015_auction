@@ -3,7 +3,9 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
+import org.springframework.stereotype.Component;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +14,7 @@ import java.util.List;
 /**
  * Created by Viktor on 01/07/2014.
  */
+@Component
 public class UserDAOImpl extends BaseDAOImpl<User> implements UserDAO {
     private String INSERT_LINE ="insert into users values (default, ?, ?, ?, ?, ?, ?, ?)";
     private String SELECT_LINE ="select * from users";
@@ -44,6 +47,39 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements UserDAO {
     public List<User> getAll() throws DBException {
         return super.getAll();
     }
+
+    @Override
+    public User getByLogin(String login) throws DBException {
+        Connection connect = null;
+
+        try {
+            connect = getConnection();
+            PreparedStatement prepStat = connect.prepareStatement("select * from users where Login = ?");
+            prepStat.setString(1, login);
+            ResultSet rs = prepStat.executeQuery();
+            User user = null;
+            if (rs.next()) {
+                user = new User();
+                user.setUserId(rs.getLong("UserID"));
+                user.setFirstName(rs.getString("FirstName"));
+                user.setLastName(rs.getString("LastName"));
+                user.setLogin(rs.getString("Login"));
+                user.setPassword(rs.getString("Password"));
+                user.setBalance(rs.getBigDecimal("Balance"));
+                user.setEmail(rs.getString("Email"));
+                user.setAvatar(rs.getString("Avatar"));
+            }
+            return user;
+        } catch (Throwable e) {
+            System.out.println("Exception while execute UserDAOImpl.getByLogin()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connect);
+        }
+    }
+
+
 
     @Override
     protected void loadEntitiesToList(ResultSet rs, List<User> entities) throws SQLException {

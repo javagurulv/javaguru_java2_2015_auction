@@ -32,6 +32,16 @@
                 </colgroup>
                 <tr>
                     <th colspan="2">
+
+
+                        <% String data = (String)request.getAttribute("model");
+                           if (data != null) {%>
+                              <%=data +" "%>
+
+                           <%}
+                        %>
+
+
                         Регистрационная информация
                     </th>
                 </tr>
@@ -40,7 +50,23 @@
                         Имя:
                     </td>
                     <td>
-                        <input type="text" name="username"/>
+                        <input type="text" name="firstName"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="inright">
+                        Фамилия:
+                    </td>
+                    <td>
+                        <input type="text" name="lastName"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="inright">
+                        Логин:
+                    </td>
+                    <td>
+                        <input type="text" name="login"/>
                     </td>
                 </tr>
                 <tr>
@@ -56,7 +82,7 @@
                         Пароль:
                     </td>
                     <td>
-                        <input type="password" name="pass"/>
+                        <input type="password" name="password"/>
                     </td>
                 </tr>
                 <tr>
@@ -64,9 +90,9 @@
                         Пол:
                     </td>
                     <td>
-                        <input type="radio" name="gender" value="male">Мужской</input></br>
-                        <input type="radio" name="gender" value="female">Женский</input></br>
-                        <input type="radio" name="gender" value="undefined">Не определедился</input>
+                        <input type="radio" name="avatar" value="male">Мужской</input></br>
+                        <input type="radio" name="avatar" value="female">Женский</input></br>
+                        <input type="radio" name="avatar" value="undefined">Не определедился</input>
                     </td>
                 </tr>
                 <tr>

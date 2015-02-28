@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @Component
 public class AccountManager {
     private UserDAOImpl userDAO = new UserDAOImpl(); // Upgrade it to spring
-
+    
     private User getValidatedUser(String login, String password) throws LoginException {
         try {
             User user = userDAO.getByLogin(login);

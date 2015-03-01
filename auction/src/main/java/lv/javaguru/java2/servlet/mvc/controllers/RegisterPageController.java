@@ -36,10 +36,10 @@ public class RegisterPageController implements MVCController {
                                    request.getParameter("email"),
                                    request.getParameter("avatar"));
 
-            if(checkFields(user)) return new MVCModel("/jsp/register.jsp", "Заполните все полня!");
+            if(checkFields(user)) return new MVCModel("/jsp/register.jsp", "Заполните все поля!");
 
 
-                if (checkIfUserExists(user)) {
+            if (checkIfUserExists(user)) {
                     try {
                         userDAO.create(user);
                     } catch (DBException e) {

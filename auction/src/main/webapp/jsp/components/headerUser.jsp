@@ -1,3 +1,4 @@
+<%@ page import="lv.javaguru.java2.domain.User" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vladislav
@@ -6,6 +7,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% User user = (User)session.getAttribute("User"); %>
+
 
 <!-- This header context will be displayed if user is logged in -->
 <div class="logo">
@@ -16,11 +19,11 @@
     <img src="http://99px.ru/sstorage/56/2011/01/image_562501111926578518190.jpg"/>
 </div>
 <div class="name">
-    Vasja123
+    <%=user.getFirstName()%>
     <p><a href="<%=request.getContextPath()%>/logoff">Выйти</a></p>
 </div>
 <div class="balance">
     <img src="<%=request.getContextPath()%>/staticRes/images/balance.jpg"/>
-    На счету: 110$
+    <em>На счету:</em> <%=user.getBalance()%>$
 </div>
 

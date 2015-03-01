@@ -23,7 +23,7 @@
     <%@ include file="components/top-banner.jsp" %> <!-- Header -->
     <%@ include file="components/navigation.jsp" %> <!-- Navigation -->
     <%@ include file="components/search.jsp" %> <!-- Search -->
-    <div  class="content registr-wrap">
+    <div  class="content registr-wrap" style="height: 300px;">
         <form name="authorization" action="<%=request.getContextPath()%>/auth" method="post">
             <table>
                 <colgroup>

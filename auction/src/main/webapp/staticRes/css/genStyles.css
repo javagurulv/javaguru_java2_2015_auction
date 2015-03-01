@@ -111,6 +111,11 @@ header > div{
 .name a:hover{
     text-decoration: underline;
 }
+
+.balance{
+    margin-top: 9px;
+    font-size: 15px;
+}
 .balance img{
     height: 29px;
     vertical-align: middle;

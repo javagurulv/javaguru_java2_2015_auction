@@ -86,11 +86,10 @@
 /* Items from registration page */
 .registr-wrap{
 	border: 1px solid black;
-	height: 300px;
+	height: 360px;
 }
 
 .registr-wrap table{
-	
 	width: 50%;
 	margin: auto;
 }

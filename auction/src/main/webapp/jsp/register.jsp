@@ -103,6 +103,9 @@
                     </td>
                 </tr>
             </table>
+            <div class="message">
+                <p><% if (data!=null){%><%=data%><%}%> </p>
+            </div>
         </form>
     </div> <!-- End of content -->
 </div> <!-- End of content-wrap -->

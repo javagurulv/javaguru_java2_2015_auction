@@ -10,10 +10,17 @@ import java.util.List;
  */
 
 public interface UserDAO {
-//Unique User class method signatures
-
 
     public void create(User user) throws DBException;
 
+    public User getById(Long id) throws DBException;
+
+    public void delete(Long id) throws DBException;
+
+    public void update(User user) throws DBException;
+
+    public List<User> getAll() throws DBException;
+
     public User getByLogin(String login) throws DBException;
+
 }

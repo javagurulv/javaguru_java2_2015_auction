@@ -19,7 +19,8 @@ public class AccountManager {
         try {
             User user = userDAO.getByLogin(login);
             if (user == null) throw new LoginException("incorrect login");
-            else if (user.getPassword().equals(password)) return user;
+
+            if (user.getPassword().equals(password)) return user;
             else throw new LoginException("incorrect password");
 
         } catch (DBException e) {
@@ -29,8 +30,16 @@ public class AccountManager {
 
     }
 
-    public void Authorize(String login, String password, HttpSession session) throws LoginException {
+    public void authorize(String login, String password, HttpSession session) throws LoginException {
             User user = getValidatedUser(login, password);
             session.setAttribute("User", user);
+    }
+
+    public boolean isAuthorized(HttpSession session){
+        return (session.getAttribute("User")!=null);
+    }
+
+    public void logOffUserFromSession(HttpSession session){
+        session.removeAttribute("User");
     }
 }

@@ -17,6 +17,7 @@
 </div>
 <div class="name">
     Vasja123
+    <p><a href="<%=request.getContextPath()%>/logoff">Выйти</a></p>
 </div>
 <div class="balance">
     <img src="<%=request.getContextPath()%>/staticRes/images/balance.jpg"/>

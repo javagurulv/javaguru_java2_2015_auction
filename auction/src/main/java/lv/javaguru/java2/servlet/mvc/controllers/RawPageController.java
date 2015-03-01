@@ -1,7 +1,7 @@
 package lv.javaguru.java2.servlet.mvc.controllers;
 
 import lv.javaguru.java2.servlet.mvc.MVCModel;
-import lv.javaguru.java2.servlet.mvc.controllers.MVCController;
+import lv.javaguru.java2.servlet.mvc.MVCController;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;

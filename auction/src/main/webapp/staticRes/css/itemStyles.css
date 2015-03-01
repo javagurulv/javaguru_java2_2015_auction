@@ -101,6 +101,15 @@
 padding: 15px;
 }
 
+.message{
+    font-size: 12px;
+    font-weight: bold;
+    width: 50%;
+    height: 90px;
+    margin: auto;
+    text-align: center;
+}
+
 .col1{
 	width: 45%;
 }
@@ -359,25 +368,4 @@ padding: 15px;
 .product-form div{
     padding-bottom: 12px;
     margin-top: 18px;
-}
-
-/* Registered header */
-.balance, .avatar, .name{
-    float: right;
-}
-.name{
-    height: 100%;
-    padding: 4px;
-    margin: 6px 5px 0 48px;
-}
-.balance img{
-    height: 29px;
-    vertical-align: middle;
-}
-.avatar img{
-    height: 29px;
-    border-radius: 15px;
-    vertical-align: middle;
-    margin-right: 15px;
-    margin-left: 5px;
 }

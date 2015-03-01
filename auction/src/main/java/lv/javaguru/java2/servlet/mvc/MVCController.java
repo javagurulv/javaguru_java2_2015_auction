@@ -1,4 +1,4 @@
-package lv.javaguru.java2.servlet.mvc.controllers;
+package lv.javaguru.java2.servlet.mvc;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.stereotype.Component;
 

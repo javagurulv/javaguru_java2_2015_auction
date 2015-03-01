@@ -4,6 +4,7 @@ import lv.javaguru.java2.services.AccountManager;
 import lv.javaguru.java2.services.LoginException;
 import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 public class AuthorizationController implements MVCController {
-    AccountManager accountManager = new AccountManager(); //Add it with spring
+    @Autowired
+    AccountManager accountManager;
+
     @Override
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
 

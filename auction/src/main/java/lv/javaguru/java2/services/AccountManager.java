@@ -3,6 +3,7 @@ package lv.javaguru.java2.services;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.UserDAOImpl;
 import lv.javaguru.java2.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpSession;
@@ -13,7 +14,8 @@ import javax.servlet.http.HttpSession;
 
 @Component
 public class AccountManager {
-    private UserDAOImpl userDAO = new UserDAOImpl(); // Upgrade it to spring
+    @Autowired
+    private UserDAOImpl userDAO;
 
     private User getValidatedUser(String login, String password) throws LoginException {
         try {

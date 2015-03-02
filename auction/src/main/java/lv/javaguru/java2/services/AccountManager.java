@@ -17,31 +17,30 @@ public class AccountManager {
     @Autowired
     private UserDAOImpl userDAO;
 
-    private User getValidatedUser(String login, String password) throws LoginException {
+    private User getUserFromDB(String login) {
+        User user = null;
         try {
-            User user = userDAO.getByLogin(login);
-            if (user == null) throw new LoginException("incorrect login");
-
-            if (user.getPassword().equals(password)) return user;
-            else throw new LoginException("incorrect password");
-
+            user = userDAO.getByLogin(login);
         } catch (DBException e) {
             e.printStackTrace();
-            throw new LoginException("db exception!");
         }
-
+        return user;
     }
 
     public void authorize(String login, String password, HttpSession session) throws LoginException {
-            User user = getValidatedUser(login, password);
+        User user = getUserFromDB(login);
+        if (user == null) throw new LoginException("incorrect login");
+
+        if (user.getPassword().equals(password)) {
             session.setAttribute("User", user);
+        } else throw new LoginException("incorrect password");
     }
 
-    public boolean isAuthorized(HttpSession session){
-        return (session.getAttribute("User")!=null);
+    public boolean isAuthorized(HttpSession session) {
+        return (session.getAttribute("User") != null);
     }
 
-    public void logOffUserFromSession(HttpSession session){
+    public void logOffUserFromSession(HttpSession session) {
         session.removeAttribute("User");
     }
 }

@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Viktor on 01/07/2014.
  */
-@Component
+@Component("JDBC_UserDAO")
 public class UserDAOImpl extends BaseDAOImpl<User> implements UserDAO {
     private String INSERT_LINE ="insert into users values (default, ?, ?, ?, ?, ?, ?, ?)";
     private String SELECT_LINE ="select * from users";

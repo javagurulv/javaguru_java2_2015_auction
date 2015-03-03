@@ -1,19 +1,39 @@
 package lv.javaguru.java2.domain;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
  * Created by Viktor on 01/07/2014.
  */
+@Entity
+@Table(name = "users")
 public class User {
 
-    private long userId;
+    @Column(name="UserID", columnDefinition = "int")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long userId;
+
+    @Column(name = "FirstName")
     private String firstName;
+
+    @Column(name = "LastName")
     private String lastName;
+
+    @Column(name = "Login")
     private String login;
+
+    @Column(name = "Password")
     private String password;
+
+    @Column(name = "Balance")
     private BigDecimal balance;
+
+    @Column(name = "Email")
     private String email;
+
+    @Column(name = "Avatar")
     private String avatar;
 
     public long getUserId() {

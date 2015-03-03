@@ -39,7 +39,7 @@ public class DAOImpl {
         try {
             properties.load(DAOImpl.class.getClassLoader().getResourceAsStream(DB_CONFIG_FILE));
             dbUrl = properties.getProperty("dbUrl");
-            userName = properties.getProperty("userName");
+            userName = properties.getProperty("database.userName");
             password = properties.getProperty("password");
         } catch (IOException e){
             System.out.println("Exciption while reading JDBC configuration from file = " + DB_CONFIG_FILE);

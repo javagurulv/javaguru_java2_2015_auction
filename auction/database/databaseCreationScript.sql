@@ -9,13 +9,13 @@ USE `Java2_test` ;
 DROP TABLE IF EXISTS `Java2_test`.`users` ;
 CREATE TABLE IF NOT EXISTS `Java2_test`.`users` (
 `UserID` INT(11) NOT NULL AUTO_INCREMENT,
-`FirstName` CHAR(32) NOT NULL,
-`LastName` CHAR(32) NOT NULL,
-`Login` CHAR(16) NOT NULL,
-`Password` CHAR(80) NOT NULL,
+`FirstName` VARCHAR(32) NOT NULL,
+`LastName` VARCHAR(32) NOT NULL,
+`Login` VARCHAR(16) NOT NULL,
+`Password` VARCHAR(80) NOT NULL,
 `Balance` DECIMAL(10,2),
-`Email` CHAR(30),
-`Avatar` CHAR(30),
+`Email` VARCHAR(30),
+`Avatar` VARCHAR(30),
 unique (`Email`, `Login`, `Password`),
 PRIMARY KEY (`UserID`)
 

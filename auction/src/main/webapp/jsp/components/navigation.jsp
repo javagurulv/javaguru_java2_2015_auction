@@ -9,10 +9,8 @@
 
 <nav>
     <a href="<%=request.getContextPath()%>/index"><div>Главная</div></a>
-    <a href="<%=request.getContextPath()%>/onSale"><div>Торговля</div></a>
-    <div>
-        Управление
-    </div>
+    <a href="<%=request.getContextPath()%>/userSale"><div>Торговля</div></a>
+    <a href="<%=request.getContextPath()%>/accControl"><div>Торговля</div></a>
     <div>
         О нас
     </div>

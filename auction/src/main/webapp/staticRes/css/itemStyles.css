@@ -368,3 +368,40 @@ padding: 15px;
     padding-bottom: 12px;
     margin-top: 18px;
 }
+
+/* Account control form */
+.account-form{
+    margin: 15px;
+    width: 93%;
+}
+.account-form fieldset input{
+    height: 24px;
+    width: 99%;
+    font-size: 14px;
+    border: 1px solid black;
+}
+.account-form .small-button{
+    width: 20%;
+    font-size: 14px;
+}
+.account-form .with-button{
+    width: 78%;
+}
+.account-form fieldset{
+    width: 65%;
+    margin-bottom: 55px;
+}
+.account-form textarea{
+    border: 1px solid black;
+    width: 100%;
+}
+
+.account-form p{
+    font-size: 15px;
+    color: gray;
+    margin-top: 5px;
+}
+.account-form h2{
+    margin: 0;
+    font-size: 18px;
+}

@@ -43,10 +43,11 @@ public class MVCFilter implements Filter {
         controllerMapping.put("/description",  getBean(ProdDescripPageController.class));
         controllerMapping.put("/index",  getBean(IndexController.class));
         controllerMapping.put("/balance",  getBean(BalancePageController.class));
-        controllerMapping.put("/onSale",  getBean(UserSalesController.class));
+        controllerMapping.put("/userSale",  getBean(UserSalesController.class));
         controllerMapping.put("/add", getBean(AddPageController.class));
         controllerMapping.put("/auth", getBean(AuthorizationController.class));
         controllerMapping.put("/logoff", getBean(LogoffController.class));
+        controllerMapping.put("/accControl", getBean(AccControlController.class));
     }
     @Override
     public void doFilter(ServletRequest request,

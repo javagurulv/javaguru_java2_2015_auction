@@ -20,7 +20,7 @@
         <h1 class="content-header">Торговля</h1>
         <!-- Left menu -->
         <div class="menu-list" style="float: left;">
-            <%@ include file="components/left-menu-content.jsp" %> <!-- left-content -->
+            <%@ include file="components/sales-menu-content.jsp" %> <!-- left-content -->
         </div><!--End of menu-list -->
         <div class="right-container">
             <p>Размещённые лоты</p>

@@ -83,7 +83,4 @@ public class Product{
         this.ownerID = ownerID;
     }
 
-    public static void main(String[] args) {
-
-    }
 }

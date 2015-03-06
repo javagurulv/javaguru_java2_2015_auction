@@ -1,8 +1,14 @@
 package lv.javaguru.java2.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Created by Vladislav on 2/15/2015.
  */
+
+
+
 public class Product{
     private long productID;
     private String name;
@@ -75,5 +81,9 @@ public class Product{
 
     public void setOwnerID(long ownerID) {
         this.ownerID = ownerID;
+    }
+
+    public static void main(String[] args) {
+
     }
 }

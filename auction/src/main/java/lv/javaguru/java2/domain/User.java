@@ -2,6 +2,7 @@ package lv.javaguru.java2.domain;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Created by Viktor on 01/07/2014.
@@ -35,6 +36,9 @@ public class User {
 
     @Column(name = "Avatar")
     private String avatar;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Product> productList;
 
     public long getUserId() {
         return userId;

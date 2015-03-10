@@ -45,11 +45,11 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`products` (
 `Image` CHAR(30),
 `Price` DECIMAL(10,2),
 `OwnerID` INT(11) NOT NULL,
--- `CategoryID` INT(11) NOT NULL,
+  `CategoryID` INT(11) NOT NULL,
 PRIMARY KEY (`ProductID`),
 CONSTRAINT UserOwnsProduct FOREIGN KEY (OwnerID) REFERENCES users(UserID)
-ON DELETE CASCADE
--- FOREIGN KEY (CategoryID) REFERENCES categories(CategoryID)
+ON DELETE CASCADE,
+ FOREIGN KEY (CategoryID) REFERENCES categories(CategoryID)
 )
 ENGINE = InnoDB
 AUTO_INCREMENT = 102;

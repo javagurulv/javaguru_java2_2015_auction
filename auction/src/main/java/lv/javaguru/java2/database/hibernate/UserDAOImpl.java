@@ -19,10 +19,9 @@ import java.util.List;
 @Transactional
 public class UserDAOImpl implements UserDAO{
 
-
-
     @Autowired
     private SessionFactory sessionFactory;
+
     @Override
     public void create(User user) throws DBException {
         Session session = sessionFactory.getCurrentSession();

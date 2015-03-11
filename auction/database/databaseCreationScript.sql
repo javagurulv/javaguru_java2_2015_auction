@@ -39,17 +39,17 @@ AUTO_INCREMENT = 12;
 drop table if exists `Java2_test`.`products`;
 CREATE TABLE IF NOT EXISTS `Java2_test`.`products` (
 `ProductID` INT(11) NOT NULL AUTO_INCREMENT,
-`Name` CHAR(32) NOT NULL,
+`Name` VARCHAR(32) NOT NULL,
 `Description` VARCHAR(3000),
 `Status` BOOL,
-`Image` CHAR(30),
-`Price` DECIMAL(10,2),
+`Image` VARCHAR(30),
+-- `Price` DECIMAL(10,2),
 `OwnerID` INT(11) NOT NULL,
-  `CategoryID` INT(11) NOT NULL,
+  `CategoryID` INT(11),
 PRIMARY KEY (`ProductID`),
 CONSTRAINT UserOwnsProduct FOREIGN KEY (OwnerID) REFERENCES users(UserID)
-ON DELETE CASCADE,
- FOREIGN KEY (CategoryID) REFERENCES categories(CategoryID)
+ON DELETE CASCADE
+ -- FOREIGN KEY (CategoryID) REFERENCES categories(CategoryID)
 )
 ENGINE = InnoDB
 AUTO_INCREMENT = 102;

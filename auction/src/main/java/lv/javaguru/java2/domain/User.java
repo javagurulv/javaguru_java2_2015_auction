@@ -37,7 +37,7 @@ public class User {
     @Column(name = "Avatar")
     private String avatar;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Product> productList;
 
     public long getUserId() {
@@ -102,6 +102,18 @@ public class User {
 
     public String getAvatar() {
         return avatar;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 }
 

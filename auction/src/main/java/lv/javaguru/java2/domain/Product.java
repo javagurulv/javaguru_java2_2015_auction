@@ -1,23 +1,45 @@
 package lv.javaguru.java2.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Vladislav on 2/15/2015.
  */
 
 
-
+@Entity
+@Table(name = "products")
 public class Product{
+
+    @Column(name="PRODUCTID", columnDefinition = "int")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long productID;
+
+    @Column(name = "Name")
     private String name;
+
+    @Column(name = "Description")
     private String description;
-    private long ownerID;
-    private ProductCategory category;
+
+
+    private transient long ownerID;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "OWNERID", nullable = false)
+    private User user;
+
+    private transient ProductCategory category;
+
+    @Column(name = "Status")
     private boolean status;
+
+    @Column(name = "Image")
     private String image = null;
-    private double price;
+
+    @Column(name = "Price")
+    private transient double price;
+
 
     public ProductCategory getCategory() {
         return category;
@@ -83,4 +105,15 @@ public class Product{
         this.ownerID = ownerID;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
 }

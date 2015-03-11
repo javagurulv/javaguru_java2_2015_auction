@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Component("ORM_ProductDAO")
 @Transactional
-public class ProdDAOImpl implements ProductDAO {
+public class ProductDAOImpl implements ProductDAO {
 
     @Autowired
     SessionFactory sessionFactory;

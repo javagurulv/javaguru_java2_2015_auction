@@ -47,12 +47,17 @@ public class SpringAppConfig {
             @Value("${hibernate.dialect}") String dialect,
             @Value("${hibernate.show_sql}") boolean showSql,
             @Value("${hibernate.format_sql}") boolean formatSql,
-            @Value("${hibernate.hbm2ddl.auto}") String hbm2ddl) {
+            @Value("${hibernate.hbm2ddl.auto}") String hbm2ddl,
+            @Value("${hibernate.search.default.directory_provider}") String directoryProvider,
+            @Value("$(hibernate.search.default.indexBase)") String indexBase){
         Properties properties = new Properties();
         properties.put("hibernate.dialect", dialect);
         properties.put("hibernate.show_sql", showSql);
         properties.put("hibernate.format_sql", formatSql);
         properties.put("hibernate.hbm2ddl.auto", hbm2ddl);
+        // Hibernate search
+        properties.put("hibernate.search.default.directory_provider", directoryProvider);
+        properties.put("hibernate.search.default.indexBase", indexBase);
         return properties;
     }
 
@@ -88,6 +93,8 @@ public class SpringAppConfig {
     public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
         return new HibernateTransactionManager(sessionFactory);
     }
+
+
 
 
 }

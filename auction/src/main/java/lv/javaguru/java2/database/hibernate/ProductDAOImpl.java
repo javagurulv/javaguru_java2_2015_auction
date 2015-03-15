@@ -23,7 +23,6 @@ public class ProductDAOImpl implements ProductDAO {
     @Autowired
     SessionFactory sessionFactory;
 
-
     @Override
     public void create(Product product) throws DBException {
         Session session = sessionFactory.getCurrentSession();

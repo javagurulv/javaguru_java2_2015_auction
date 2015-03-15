@@ -1,5 +1,8 @@
 package lv.javaguru.java2.domain;
 
+import org.hibernate.search.annotations.*;
+import org.hibernate.search.annotations.Index;
+
 import javax.persistence.*;
 
 /**
@@ -8,6 +11,7 @@ import javax.persistence.*;
 
 
 @Entity
+@Indexed
 @Table(name = "products")
 public class Product{
 
@@ -17,9 +21,11 @@ public class Product{
     private long productID;
 
     @Column(name = "Name")
+    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String name;
 
     @Column(name = "Description")
+    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String description;
 
 

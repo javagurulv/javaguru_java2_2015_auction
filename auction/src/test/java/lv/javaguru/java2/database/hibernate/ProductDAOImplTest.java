@@ -50,7 +50,7 @@ public class ProductDAOImplTest extends SpringIntegrationTest {
 
 
     @Test
-    public void testGetCompanyesWithUsers() throws DBException {
+    public void testGetUserWithProductList() throws DBException {
         TransactionTemplate tt = new TransactionTemplate(transactionManager);
 
         final AtomicLong userId = new AtomicLong();

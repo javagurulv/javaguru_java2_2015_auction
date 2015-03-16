@@ -1,3 +1,5 @@
+<%@ page import="lv.javaguru.java2.domain.Product" %>
+<%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vladislav
@@ -38,15 +40,19 @@
             </ul>
         </div><!--End of category-list -->
         <div class="req-container">
-            <p><strong>4</strong> результатов по запросу <strong>Котики</strong></p>
+            <%List<Product> products = (List<Product>)request.getAttribute("model");%>
+
+            <p> <strong><%=products.size()%></strong>
+                результатов по запросу
+                <strong>"<%=request.getParameter("searchQuery")%>"</strong>
+            </p>
             <div class="merch-list">
-                <% for (int i = 0; i < 4; i++) { %>
+                <% for (Product product : products) { %>
                     <div class="record">
                         <img src="<%=resPath%>/images/cat.jpg"/>
-                        <span>Котята. Милые и пушистые! Спешите, товар огрвничен!</span>
-                        <p>Котята отличаются особой мягкостью.
-                            Котята отличаются особой мягкостью.
-                            Котята отличаются особой мягкостью.
+                        <span><%=product.getName()%></span>
+                        <p>
+                            <%=product.getDescription()%>
                         </p>
                     </div>
                 <%}%>

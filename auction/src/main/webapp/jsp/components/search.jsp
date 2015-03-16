@@ -10,6 +10,6 @@
 <div class="search-bar">
     <form name="search" action="<%=request.getContextPath()%>/prod" method="get">
         <button type="submit">Искать</button>
-        <input type="text" name="q" placeholder="Поиск">
+        <input type="text" name="searchQuery" placeholder="Поиск">
     </form>
 </div>

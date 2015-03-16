@@ -21,15 +21,12 @@ public class SearchResController implements MVCController {
 
     @Override
     public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
-        String message = "Hello from MVC!";
-        MVCModel model = new MVCModel("/jsp/searchRes.jsp", message);
+        String searchQuery = request.getParameter("searchQuery");
 
+        // This 4 must be changed somehow because controller shouldn't be aware of view
+        List<Product> productList = searchEngine.searchForProductsBy(searchQuery, 1, 4);
 
-        List<Product> productList = searchEngine.searchForProductsBy("car", 1, 5);
-        System.out.println("Results found: "+productList.size());
-        for (Product product: productList){
-            System.out.println(product.getName());
-        }
+        MVCModel model = new MVCModel("/jsp/searchRes.jsp", productList);
 
         return model;
     }

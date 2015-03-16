@@ -5,8 +5,10 @@ import lv.javaguru.java2.database.ProductDAO;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.Product;
 import lv.javaguru.java2.domain.ProductCategory;
+import lv.javaguru.java2.domain.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,5 +55,15 @@ public class ProductDAOImpl implements ProductDAO {
     public List<Product> getAll() throws DBException {
         Session session = sessionFactory.getCurrentSession();
         return session.createCriteria(Product.class).list();
+    }
+
+    @Override
+    public List<Product> getByCategory(ProductCategory category) {
+        return  null;
+    }
+
+    @Override
+    public List<Product> getByUser(User user) {
+        return null;
     }
 }

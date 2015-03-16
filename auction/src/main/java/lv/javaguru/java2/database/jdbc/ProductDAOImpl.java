@@ -17,6 +17,16 @@ import java.util.List;
 public class ProductDAOImpl extends DAOImpl implements ProductDAO {
 
     @Override
+    public List<Product> getByCategory(ProductCategory category) {
+        return null;
+    }
+
+    @Override
+    public List<Product> getByUser(User user) {
+        return null;
+    }
+
+    @Override
     public void create(Product product) throws DBException {
         if (product==null) return;
 
@@ -30,7 +40,7 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
             statement.setBoolean(3, product.getStatus());
             statement.setString(4, product.getImage());
             statement.setDouble(5, product.getPrice());
-            statement.setLong(6, product.getOwnerID());
+//            statement.setLong(6, product.getOwnerID());
             //statement.setLong(7, product.getCategory().getCategoryId());
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
@@ -60,7 +70,7 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
                 product.setProductID(rs.getLong("ProductID"));
                 product.setName(rs.getString("Name"));
                 product.setDescription(rs.getString("Description"));
-                product.setOwnerID(rs.getLong("OwnerID"));
+//                product.setOwnerID(rs.getLong("OwnerID"));
                 //product.setCategory(new ProductCategory());
                 product.setImage(rs.getString("Image"));
                 product.setPrice(rs.getDouble("Price"));
@@ -110,7 +120,7 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
             statement.setBoolean(3, product.getStatus());
             statement.setString(4, product.getImage());
             statement.setDouble(5, product.getPrice());
-            statement.setLong(6, product.getOwnerID());
+//            statement.setLong(6, product.getOwnerID());
             //statement.setLong(7, product.getCategory().getCategoryId());
             statement.setLong(7, product.getProductID());
             statement.executeUpdate();
@@ -138,7 +148,7 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
                 product.setProductID(rs.getLong("ProductID"));
                 product.setName(rs.getString("Name"));
                 product.setDescription(rs.getString("Description"));
-                product.setOwnerID(rs.getLong("OwnerID"));
+                //product.setOwnerID(rs.getLong("OwnerID"));
                 //product.setCategory(new ProductCategory());
                 product.setImage(rs.getString("Image"));
                 product.setPrice(rs.getDouble("Price"));

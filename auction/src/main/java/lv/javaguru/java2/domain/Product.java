@@ -28,14 +28,13 @@ public class Product{
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String description;
 
-
-    private transient long ownerID;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "OWNERID", nullable = false)
     private User user;
 
-    private transient ProductCategory category;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "CategoryID", nullable = false)
+    private  ProductCategory category;
 
     @Column(name = "Status")
     private boolean status;
@@ -101,14 +100,6 @@ public class Product{
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public long getOwnerID() {
-        return ownerID;
-    }
-
-    public void setOwnerID(long ownerID) {
-        this.ownerID = ownerID;
     }
 
     public User getUser() {

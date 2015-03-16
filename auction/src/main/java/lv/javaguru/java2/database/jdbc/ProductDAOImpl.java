@@ -17,12 +17,17 @@ import java.util.List;
 public class ProductDAOImpl extends DAOImpl implements ProductDAO {
 
     @Override
-    public List<Product> getByCategory(ProductCategory category) {
+    public List<Product> getProductsInCategory(ProductCategory category) {
         return null;
     }
 
     @Override
     public List<Product> getByUser(User user) {
+        return null;
+    }
+
+    @Override
+    public Long getProductCountInCategory(ProductCategory category) {
         return null;
     }
 

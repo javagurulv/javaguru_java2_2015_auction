@@ -11,6 +11,7 @@ import java.util.List;
  */
 public interface ProductDAO extends BaseDAO<Product> {
 //Unique User class method signatures
-    List<Product> getByCategory(ProductCategory category);
-    List<Product> getByUser(User user);
+    public Long getProductCountInCategory(ProductCategory category);
+    public List<Product> getProductsInCategory(ProductCategory category);
+    public List<Product> getByUser(User user);
 }

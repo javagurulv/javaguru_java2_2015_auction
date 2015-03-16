@@ -8,6 +8,7 @@ import lv.javaguru.java2.domain.ProductCategory;
 import lv.javaguru.java2.domain.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -58,12 +59,26 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<Product> getByCategory(ProductCategory category) {
-        return  null;
+    public List<Product> getProductsInCategory(ProductCategory category) {
+        Session session = sessionFactory.getCurrentSession();
+
+        return  session.createCriteria(Product.class)
+                .add(Restrictions.eq("category", category)).list();
+    }
+
+    @Override
+    public Long getProductCountInCategory(ProductCategory category) {
+        Session session = sessionFactory.getCurrentSession();
+        return (Long)session.createCriteria(Product.class)
+                .add(Restrictions.eq("category", category))
+                .setProjection(Projections.rowCount()).uniqueResult();
+
     }
 
     @Override
     public List<Product> getByUser(User user) {
-        return null;
+        Session session = sessionFactory.getCurrentSession();
+
+        return session.createCriteria(Product.class).add(Restrictions.eq("user", user)).list();
     }
 }

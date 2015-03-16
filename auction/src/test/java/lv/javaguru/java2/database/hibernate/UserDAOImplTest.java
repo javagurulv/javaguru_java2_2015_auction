@@ -4,6 +4,7 @@ import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 import lv.javaguru.java2.domain.User;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class UserDAOImplTest extends SpringIntegrationTest{
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
 
     @Before
+    @After
     public void init() throws DBException {
         databaseCleaner.cleanDatabase();
     }

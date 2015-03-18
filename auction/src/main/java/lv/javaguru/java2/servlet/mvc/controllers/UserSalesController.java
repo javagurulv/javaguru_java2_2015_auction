@@ -4,6 +4,10 @@ import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import lv.javaguru.java2.servlet.mvc.SecuredController;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,12 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by Vladislav on 2/22/2015.
  */
-@Component
-public class UserSalesController extends SecuredController implements MVCController {
-    @Override
-    public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
+@Controller
+public class UserSalesController {
 
-        MVCModel model = getSecuredModel("/jsp/userSales.jsp", null, request);
-        return model;
+    @RequestMapping(value = "userSale", method = {RequestMethod.PUT, RequestMethod.GET})
+    public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) {
+
+        return  new ModelAndView("userSales", "model", null);
     }
 }

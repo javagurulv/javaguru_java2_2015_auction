@@ -11,21 +11,28 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 import java.math.BigDecimal;
 
 /**
  * Created by Denis on 18-Feb-15.
  */
-@Component
-public class RegisterPageController implements MVCController {
+@Controller
+public class RegisterPageController {
     @Autowired
     @Qualifier("ORM_UserDAO")
     private UserDAO userDAO;
 
-    @Override
-    public MVCModel processRequest(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "register", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) {
 
 
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("register");
 
 
         if (request.getMethod().equals("POST")) {
@@ -38,7 +45,7 @@ public class RegisterPageController implements MVCController {
                                    request.getParameter("email"),
                                    request.getParameter("avatar"));
 
-            if(checkFields(user)) return new MVCModel("/jsp/register.jsp", "Заполните все поля!");
+            if(checkFields(user)) return modelAndView.addObject("model", "Заполните все поля!");
 
 
             if (checkIfUserExists(user)) {
@@ -46,17 +53,17 @@ public class RegisterPageController implements MVCController {
                         userDAO.create(user);
                     } catch (DBException e) {
                         e.printStackTrace();
-                        return new MVCModel("/register.jsp", "Something gone wrong with DB.");
+                        return modelAndView.addObject("model","Something gone wrong with DB.");
                     }
 
                 } else {
-                    return new MVCModel("/jsp/register.jsp", "Такой пользователь уже есть!");
+                    return modelAndView.addObject("model", "Такой пользователь уже есть!");
                 }
 
         }
 
-
-        return new MVCModel("/jsp/register.jsp", null);
+        modelAndView.addObject("model", null);
+        return modelAndView;
     }
 
 
@@ -96,5 +103,6 @@ public class RegisterPageController implements MVCController {
 
         if (testUser == null) return true; else return false;
     }
+
 
 }

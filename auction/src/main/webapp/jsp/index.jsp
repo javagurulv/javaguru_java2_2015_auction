@@ -7,8 +7,11 @@
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <link type="text/css" rel="stylesheet" href="<%=resPath%>/css/genStyles.css">
-    <link type="text/css" rel="stylesheet" href="<%=resPath%>/css/itemStyles.css">
+
+    <link rel="stylesheet" type="text/css" href="<%=resPath%>/css/genStyles.css">
+    <link rel="stylesheet" type="text/css" href="<%=resPath%>/css/itemStyles.css">
+
+
 </head>
 <body>
 <div class="container">

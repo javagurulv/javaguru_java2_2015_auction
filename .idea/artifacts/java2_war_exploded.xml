@@ -54,13 +54,15 @@
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
           <element id="library" level="project" name="Maven: org.apache.lucene:lucene-smartcn:3.6.2" />
           <element id="library" level="project" name="Maven: org.apache.lucene:lucene-stempel:3.6.2" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:4.1.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.1.2.RELEASE" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.4" />
           <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.5.4" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.28" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.1.2.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.1.2.RELEASE" />
-          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.1.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.mockito:mockito-all:1.10.8" />
         </element>
       </element>

@@ -42,7 +42,7 @@ public class Product{
     @Column(name = "Image")
     private String image = null;
 
-//    @Column(name = "Price")
+    @Column(name = "Price")
     private transient double price;
 
 

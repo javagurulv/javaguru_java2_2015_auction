@@ -1,5 +1,7 @@
 <%@ page import="lv.javaguru.java2.domain.Product" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.ArrayList" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vladislav
@@ -25,22 +27,27 @@
     <%@ include file="components/top-banner.jsp" %> <!-- Header -->
     <%@ include file="components/navigation.jsp" %> <!-- Navigation -->
     <%@ include file="components/search.jsp" %> <!-- Search -->
+    <%
+        // Getting model and splitting it into meaningfull components
+        Map<String, Object> model = (Map<String, Object>)request.getAttribute("model");
+        List<Product> products = (List<Product>)model.get("searchResult");
+
+        List<String> categoryNames = (List<String>)model.get("categoryNames");
+        List<Long> productsInCategory = (List<Long>)model.get("productsInCategory");
+    %>
+
     <div  class="content request-wrap">
         <div class="category-list" style="float: left;">
             <h1>Категории</h1>
             <ul>
-                <li>Котята<span> (0)</span></li>
-                <li>Цветы<span> (0)</span></li>
-                <li>Конфеты<span> (0)</span></li>
-                <ul>
-                    <li>Мормелад<span> (0)</span></li>
-                    <li>Шоколад<span> (0)</span></li>
-                </ul>
-                <li>Ёлочные игрушки<span>  (0)</span></li>
+
+                <% for(int i = 0; i < categoryNames.size(); i++) { %>
+                    <li><%=categoryNames.get(i)%><span> (<%=productsInCategory.get(i)%>)</span></li>
+                <%}%>
+
             </ul>
         </div><!--End of category-list -->
         <div class="req-container">
-            <%List<Product> products = (List<Product>)request.getAttribute("model");%>
 
             <p> <strong><%=products.size()%></strong>
                 результатов по запросу

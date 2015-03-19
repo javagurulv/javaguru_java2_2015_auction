@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,28 +25,33 @@ public class SearchEngine {
     SessionFactory sessionFactory;
 
 
+    // Should be called if some data is in database before starting
     public void initializeSearchIndex() throws InterruptedException {
-        // Should be called if some data is in database before starting
         Session session = sessionFactory.getCurrentSession();
 
         FullTextSession fullTextSession = Search.getFullTextSession(session);
         fullTextSession.createIndexer().startAndWait();
     }
 
-    public List<Product> searchForProductsBy(String keywords, int startFrom, int productCount){
-        Session session =  sessionFactory.getCurrentSession();
-        FullTextSession fullTextSession = Search.getFullTextSession(session);
-        SearchFactory searchFactory = fullTextSession.getSearchFactory();
 
-        QueryBuilder productQB = searchFactory.buildQueryBuilder().forEntity(Product.class).get();
+    public List<Product> searchForProductsBy(String keywords, int startFrom, int productCount) {
+        if (!keywords.isEmpty()) {
+            Session session = sessionFactory.getCurrentSession();
 
-        Query luceneQuery = productQB.keyword().onFields("description", "name").matching(keywords).createQuery();
-        org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery, Product.class);
+            FullTextSession fullTextSession = Search.getFullTextSession(session);
+            SearchFactory searchFactory = fullTextSession.getSearchFactory();
 
-        fullTextQuery.setFirstResult(startFrom); //start from the N-th element
-        fullTextQuery.setMaxResults(productCount); //return K elements
+            QueryBuilder productQB = searchFactory.buildQueryBuilder().forEntity(Product.class).get();
 
-        return fullTextQuery.list();
+            Query luceneQuery = productQB.keyword().onFields("description", "name").matching(keywords).createQuery();
+            org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery, Product.class);
+
+            fullTextQuery.setFirstResult(startFrom); //start from the N-th element
+            fullTextQuery.setMaxResults(productCount); //return K elements
+
+            return fullTextQuery.list();
+        }
+
+        return new ArrayList<Product>();
     }
-
 }

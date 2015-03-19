@@ -3,5 +3,6 @@
 <ul>
     <a href="<%=request.getContextPath()%>/add"><li>Разместить товар</li></a>
     <a href="<%=request.getContextPath()%>/userSale"><li>Размещённые лоты</li></a>
+    <a href="<%=request.getContextPath()%>/category"><li>Управление категориями</li></a>
     <li>Приобретённые лоты</li>
 </ul>

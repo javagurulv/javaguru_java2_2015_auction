@@ -1,3 +1,6 @@
+<%@ page import="java.util.Map" %>
+<%@ page import="lv.javaguru.java2.domain.Product" %>
+<%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vladislav
@@ -31,6 +34,13 @@
             <%@ include file="components/sales-menu-content.jsp" %> <!-- left-content -->
         </div><!--End of menu-list -->
         <div class="right-container">
+            <%
+                // Getting model and splitting it into meaningfull components
+                Map<String, Object> model = (Map<String, Object>)request.getAttribute("model");
+
+                List<String> categoryNames = (List<String>)model.get("categoryNames");
+            %>
+
             <div class="product-form">
                 <form>
                     <h3>Разместить товар</h3>
@@ -43,7 +53,9 @@
                     <div>
                         <h2>Категория</h2>
                         <select>
-                            <option value="cats">Котики</option>
+                            <% for (String category : categoryNames){ %>
+                                <option value="<%=category%>"><%=category%></option>
+                            <%}%>
                         </select>
                     </div>
                     <div>

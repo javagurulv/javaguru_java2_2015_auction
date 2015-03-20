@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -27,13 +28,15 @@ public class CategoryManagementController {
     @Qualifier("ORM_ProductCategoryDAO")
     private ProductCategoryDAO productCategoryDAO;
 
-    ModelAndView modelAndView = new ModelAndView();
+
 
 
     @RequestMapping(value = "category", method = {RequestMethod.GET})
     public ModelAndView processRequestGet(HttpServletRequest request, HttpServletResponse response) {
 
+      ModelAndView modelAndView = new ModelAndView();
       modelAndView.setViewName("category");
+      modelAndView.addObject("errorMsg", "");
       return modelAndView.addObject("model", GetAllCategories());
 
     }
@@ -43,16 +46,29 @@ public class CategoryManagementController {
     @RequestMapping(value = "category", params = "AddBTN", method = {RequestMethod.POST})
     public ModelAndView processRequestAddBTN(HttpServletRequest request, HttpServletResponse response) {
 
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("category");
+        String errorMsg = ValidateCategoryName(request.getParameter("AddCategoryName"));
+
+
+        if(errorMsg != "") {
+            modelAndView.addObject("errorMsg", errorMsg);
+            modelAndView.addObject("model", GetAllCategories());
+            return modelAndView;
+        } else {
+            modelAndView.addObject("errorMsg", "Категория добавлена!");
+        }
+
             try {
                 ProductCategory category = new ProductCategory();
                 category.setName(request.getParameter("AddCategoryName"));
-                productCategoryDAO.create(category);   // Неоходимо будет написать ограничение на добавление катерогий с таким же название, и название не должно быть пустыи.
+                productCategoryDAO.create(category);
             } catch (DBException e) {
                 e.printStackTrace();
                 }
 
-        modelAndView.setViewName("category");
-        return modelAndView.addObject("model", GetAllCategories());
+        modelAndView.addObject("model", GetAllCategories());
+        return modelAndView;
 
     }
 
@@ -61,6 +77,9 @@ public class CategoryManagementController {
     @RequestMapping(value = "category", params = "DeleteBTN", method = {RequestMethod.POST})
     public ModelAndView processRequestDeleteBTN(HttpServletRequest request, HttpServletResponse response) {
 
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("errorMsg", "Категория удалена!");
+        modelAndView.setViewName("category");
         String category = request.getParameter("DeleteCategoryName");
 
         if(category != null) {
@@ -71,7 +90,6 @@ public class CategoryManagementController {
                 }
         }
 
-        modelAndView.setViewName("category");
         return modelAndView.addObject("model", GetAllCategories());
 
     }
@@ -86,6 +104,25 @@ public class CategoryManagementController {
         } catch (DBException e) { e.printStackTrace();}
 
         return null;
+
+    }
+
+
+
+    private String ValidateCategoryName(String checkCategoryName){
+
+        List<ProductCategory> categories = GetAllCategories();
+        List<String> categoryNames = new ArrayList<String>();
+
+        for (ProductCategory category: categories){
+            categoryNames.add(category.getName());
+        }
+
+        if (categoryNames.contains(checkCategoryName)) {
+            return "Такая категория уже существует!";
+        }
+
+        return "";
 
     }
 

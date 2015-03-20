@@ -43,6 +43,13 @@
                     </div>
 
 
+                    <div>
+                         <h2>
+                             <%=request.getAttribute("errorMsg")%>
+                         </h2>
+                    </div>
+
+
                           <div class="button-container">
                               <input type="submit" value="Добавить" name="AddBTN">
 
@@ -65,7 +72,7 @@
 
 
                     <div class="button-container">
-                        <input type="submit" value="Удалисть" name="DeleteBTN">
+                        <input type="submit" value="Удалить" name="DeleteBTN">
 
                     </div>
 

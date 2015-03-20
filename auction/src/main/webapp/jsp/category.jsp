@@ -39,7 +39,7 @@
 
                     <div>
                         <h2>Введите названия категории для добавления</h2>
-                        <input type="text" name="CategoryName">
+                        <input type="text" name="AddCategoryName">
                     </div>
 
 
@@ -53,7 +53,7 @@
                         <h2>Выберите категорию для удаления</h2>
                         <% List<ProductCategory> categoryList = (List<ProductCategory>)request.getAttribute("model");
                             if (categoryList != null) {
-                        %>       <select name="DeleteCategory">
+                        %>       <select name="DeleteCategoryName">
                                  <% for (ProductCategory category : categoryList) {%>
                                      <%= "<option value='"+category.getCategoryId()+"'>"+category.getName()+"</option>" %>
 

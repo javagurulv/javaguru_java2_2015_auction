@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,30 +27,52 @@ public class CategoryManagementController {
     @Qualifier("ORM_ProductCategoryDAO")
     private ProductCategoryDAO productCategoryDAO;
 
-
-    @RequestMapping(value = "category", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView modelAndView = new ModelAndView();
 
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("category");
+    @RequestMapping(value = "category", method = {RequestMethod.GET})
+    public ModelAndView processRequestGet(HttpServletRequest request, HttpServletResponse response) {
+
+      modelAndView.setViewName("category");
+      return modelAndView.addObject("model", GetAllCategories());
+
+    }
 
 
 
-        if (request.getMethod().equals("GET")) { return modelAndView.addObject("model", GetAllCategories());
-
-        } else {
+    @RequestMapping(value = "category", params = "AddBTN", method = {RequestMethod.POST})
+    public ModelAndView processRequestAddBTN(HttpServletRequest request, HttpServletResponse response) {
 
             try {
                 ProductCategory category = new ProductCategory();
-                category.setName(request.getParameter("CategoryName"));
-                productCategoryDAO.create(category);          // Неоходимо будет написать ограничение на добавление катерогий с таким же название, и название не должно быть пустыи.
-            } catch (DBException e) { e.printStackTrace(); }
+                category.setName(request.getParameter("AddCategoryName"));
+                productCategoryDAO.create(category);   // Неоходимо будет написать ограничение на добавление катерогий с таким же название, и название не должно быть пустыи.
+            } catch (DBException e) {
+                e.printStackTrace();
+                }
 
-            return modelAndView.addObject("model", GetAllCategories());
+        modelAndView.setViewName("category");
+        return modelAndView.addObject("model", GetAllCategories());
 
+    }
+
+
+
+    @RequestMapping(value = "category", params = "DeleteBTN", method = {RequestMethod.POST})
+    public ModelAndView processRequestDeleteBTN(HttpServletRequest request, HttpServletResponse response) {
+
+        String category = request.getParameter("DeleteCategoryName");
+
+        if(category != null) {
+        try {
+             productCategoryDAO.delete(Long.parseLong(category)); // Неоходимо будет написать ограничение на добавление катерогий с таким же название, и название не должно быть пустыи.
+            } catch (DBException e) {
+                e.printStackTrace();
+                }
         }
 
+        modelAndView.setViewName("category");
+        return modelAndView.addObject("model", GetAllCategories());
 
     }
 
@@ -58,8 +81,8 @@ public class CategoryManagementController {
     private  List<ProductCategory> GetAllCategories(){
 
         try {
-              List<ProductCategory> infoString = productCategoryDAO.getAll();
-              return infoString;
+              List<ProductCategory> categoryList = productCategoryDAO.getAll();
+              return categoryList;
         } catch (DBException e) { e.printStackTrace();}
 
         return null;

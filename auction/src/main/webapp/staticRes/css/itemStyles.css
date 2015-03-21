@@ -405,3 +405,16 @@ padding: 15px;
     margin: 0;
     font-size: 18px;
 }
+
+
+/* Profile Items */
+
+.profile-set{
+    width: 80% !important;
+    margin-bottom: 45px !important;
+}
+
+.profile-set img{
+    margin-top: 10px;
+    max-height: 260px;
+}

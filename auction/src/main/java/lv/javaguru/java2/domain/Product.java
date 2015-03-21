@@ -4,6 +4,7 @@ import org.hibernate.search.annotations.*;
 import org.hibernate.search.annotations.Index;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 /**
  * Created by Vladislav on 2/15/2015.
@@ -43,7 +44,7 @@ public class Product{
     private String image = null;
 
     @Column(name = "Price")
-    private transient double price;
+    private BigDecimal price;
 
 
     public ProductCategory getCategory() {
@@ -70,11 +71,11 @@ public class Product{
         this.image = image;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

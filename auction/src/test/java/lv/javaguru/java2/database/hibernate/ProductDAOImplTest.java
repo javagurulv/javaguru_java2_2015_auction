@@ -232,7 +232,7 @@ public class ProductDAOImplTest extends SpringIntegrationTest {
         return user;
     }
 
-    private Product createProduct(String name, String description, boolean status, String image, double price,
+    private Product createProduct(String name, String description, boolean status, String image, BigDecimal price,
                                   User owner) {
 
         Product product = new Product();
@@ -251,7 +251,7 @@ public class ProductDAOImplTest extends SpringIntegrationTest {
         product.setDescription("CatCatCatCatCatCatCatCatCatCat");
         product.setStatus(true);
         product.setImage("/image");
-        product.setPrice(255);
+        product.setPrice(BigDecimal.valueOf(255));
         product.setUser(user);
         product.setCategory(category);
 

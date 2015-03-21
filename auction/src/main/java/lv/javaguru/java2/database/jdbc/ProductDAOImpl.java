@@ -44,7 +44,7 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
             statement.setString(2, product.getDescription());
             statement.setBoolean(3, product.getStatus());
             statement.setString(4, product.getImage());
-            statement.setDouble(5, product.getPrice());
+            statement.setBigDecimal(5, product.getPrice());
 //            statement.setLong(6, product.getOwnerID());
             //statement.setLong(7, product.getCategory().getCategoryId());
             statement.executeUpdate();
@@ -78,7 +78,7 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
 //                product.setOwnerID(rs.getLong("OwnerID"));
                 //product.setCategory(new ProductCategory());
                 product.setImage(rs.getString("Image"));
-                product.setPrice(rs.getDouble("Price"));
+                product.setPrice(rs.getBigDecimal("Price"));
                 product.setStatus(rs.getBoolean("Status"));
 
             }
@@ -124,7 +124,7 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
             statement.setString(2, product.getDescription());
             statement.setBoolean(3, product.getStatus());
             statement.setString(4, product.getImage());
-            statement.setDouble(5, product.getPrice());
+            statement.setBigDecimal(5, product.getPrice());
 //            statement.setLong(6, product.getOwnerID());
             //statement.setLong(7, product.getCategory().getCategoryId());
             statement.setLong(7, product.getProductID());
@@ -156,7 +156,7 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
                 //product.setOwnerID(rs.getLong("OwnerID"));
                 //product.setCategory(new ProductCategory());
                 product.setImage(rs.getString("Image"));
-                product.setPrice(rs.getDouble("Price"));
+                product.setPrice(rs.getBigDecimal("Price"));
                 product.setStatus(rs.getBoolean("Status"));
                 products.add(product);
             }

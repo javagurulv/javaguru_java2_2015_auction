@@ -1,6 +1,3 @@
-<%@ page import="java.util.Map" %>
-<%@ page import="lv.javaguru.java2.domain.Product" %>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%-- Declaring JSP variable--%>
@@ -20,33 +17,26 @@
     <%@ include file="components/navigation.jsp" %> <!-- Navigation -->
     <%@ include file="components/search.jsp" %> <!-- Search -->
     <div  class="content sales-content">
-        <%
-            // Getting model and splitting it into meaningfull components
-            Map<String, Object> model = (Map<String, Object>)request.getAttribute("model");
-            List<Product> products = (List<Product>)model.get("products");
-
-        %>
-
         <h1 class="content-header">Торговля</h1>
         <!-- Left menu -->
         <div class="menu-list" style="float: left;">
             <%@ include file="components/sales-menu-content.jsp" %> <!-- left-content -->
         </div><!--End of menu-list -->
         <div class="right-container">
-            <p>Размещённые лоты</p>
+            <p>Приобретённые лоты</p>
             <div class="product-list">
-                <% for(Product product: products) {%>
+                <% for(int i = 0; i < 4; i++) {%>
                     <div class="product-record">
                         <div class="img-box">
                             <img src="https://placekitten.com/g/200/250"/>
                         </div>
                         <div class="descr-box">
-                            <h1><%=product.getName()%></h1>
-                            <p> <%=product.getDescription()%></p>
+                            <h1>Великолепный котик</h1>
+                            <p> Описание Описание Описание</p>
 
                         </div>
                         <div  class="price-box">
-                            <p>Цена: <%=product.getPrice().toString()%>$</p>
+                            <p>Цена: 14.99$</p>
                         </div>
                     </div> <!-- End of product-record-->
 

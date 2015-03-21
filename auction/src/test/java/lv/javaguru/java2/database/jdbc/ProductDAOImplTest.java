@@ -36,7 +36,7 @@ public class ProductDAOImplTest {
         User user = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
         userDAO.create(user);
 
-        Product product = createProduct("Car1", "Very heavy car!", true, "car.jpg", 999.99, user.getUserId());
+        Product product = createProduct("Car1", "Very heavy car!", true, "car.jpg", new BigDecimal(99.99), user.getUserId());
         productDAO.create(product);
 
         Product productFromDB = productDAO.getById(product.getProductID());
@@ -46,7 +46,7 @@ public class ProductDAOImplTest {
         assertEquals(product.getDescription(), productFromDB.getDescription());
         assertEquals(product.getStatus(), productFromDB.getStatus());
         assertEquals(product.getImage(), productFromDB.getImage());
-        assertEquals(product.getPrice(), productFromDB.getPrice(), 0.001);
+        assertEquals(product.getPrice(), productFromDB.getPrice());
 //        assertEquals(product.getOwnerID(), productFromDB.getOwnerID());
 
     }
@@ -57,8 +57,8 @@ public class ProductDAOImplTest {
         User user = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
         userDAO.create(user);
 
-        Product product1 = createProduct("Car1", "Very heavy car!", true, "car.jpg", 999.99, user.getUserId());
-        Product product2 = createProduct("Car2", "Very heavy car!", true, "car.jpg", 666.66, user.getUserId());
+        Product product1 = createProduct("Car1", "Very heavy car!", true, "car.jpg", new BigDecimal(99.99), user.getUserId());
+        Product product2 = createProduct("Car2", "Very heavy car!", true, "car.jpg", new BigDecimal(99.99), user.getUserId());
 
         productDAO.create(product1);
         productDAO.create(product2);
@@ -73,7 +73,7 @@ public class ProductDAOImplTest {
         User user = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
         userDAO.create(user);
 
-        Product product = createProduct("Car1", "Very heavy car!", true, "car.jpg", 999.99, user.getUserId());
+        Product product = createProduct("Car1", "Very heavy car!", true, "car.jpg", new BigDecimal(99.99), user.getUserId());
         productDAO.create(product);
 
         Product productFromDB = productDAO.getById(product.getProductID());
@@ -86,7 +86,7 @@ public class ProductDAOImplTest {
         User user = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
         userDAO.create(user);
 
-        Product product = createProduct("Car1", "Very heavy car!", true, "car.jpg", 999.99, user.getUserId());
+        Product product = createProduct("Car1", "Very heavy car!", true, "car.jpg", new BigDecimal(99.99), user.getUserId());
         productDAO.create(product);
 
         productDAO.delete(product.getProductID());
@@ -99,7 +99,7 @@ public class ProductDAOImplTest {
         User user = createUser("F", "L", "Login","pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
         userDAO.create(user);
 
-        Product product = createProduct("Car1", "Very heavy car!", true, "car.jpg", 999.99, user.getUserId());
+        Product product = createProduct("Car1", "Very heavy car!", true, "car.jpg", new BigDecimal(99.99), user.getUserId());
         productDAO.create(product);
 
         product.setName("Bentley");
@@ -115,7 +115,7 @@ public class ProductDAOImplTest {
 
 
 
-    private Product createProduct(String name, String description, boolean status, String image, double price, long ownerID) {
+    private Product createProduct(String name, String description, boolean status, String image, BigDecimal price, long ownerID) {
 
         Product product = new Product();
         product.setName(name);

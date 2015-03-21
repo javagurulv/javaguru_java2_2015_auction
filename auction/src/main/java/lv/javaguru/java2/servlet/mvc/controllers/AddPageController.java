@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,6 +48,7 @@ public class AddPageController {
         return new ModelAndView("add", "model", dataToSend);
     }
 
+
     @RequestMapping(value = "add", method = {RequestMethod.POST})
     public ModelAndView processPostRequest(HttpServletRequest request, HttpServletResponse response){
         // This map will be send to view
@@ -68,10 +70,15 @@ public class AddPageController {
         product.setName(request.getParameter("name"));
         product.setDescription(request.getParameter("description"));
         product.setImage(request.getParameter("image"));
-        product.setPrice(Integer.parseInt(request.getParameter("price")));
+        System.out.println(request.getParameter("price")+"string");
+
+        Double price = Double.parseDouble(request.getParameter("price"));
+        product.setPrice(BigDecimal.valueOf(price));
+
         product.setStatus(true);
         product.setCategory(categoryDAO.getByName(request.getParameter("category")));
         product.setUser((User)(request.getSession().getAttribute("User")));
+
 
         return product;
     }

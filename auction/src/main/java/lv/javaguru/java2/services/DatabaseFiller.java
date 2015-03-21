@@ -97,7 +97,7 @@ public class DatabaseFiller {
         // Creating fields
         product.setDescription("Описание Описание Описание /n Описание Описание Описание /n Описание Описание Описание ");
         product.setImage("image");
-        product.setPrice(random.nextInt(18)*100);
+        product.setPrice(new BigDecimal(random.nextInt(18)*100));
         product.setStatus(true);
 
         return product;

@@ -42,17 +42,17 @@
             %>
 
             <div class="product-form">
-                <form>
+                <form name="add-product" method="POST" action="">
                     <h3>Разместить товар</h3>
                     <div>
                         <h2>Заголовок товара</h2>
-                        <input type="text">
+                        <input type="text" name="name">
                         <p>Длина заголовка продукта должна составлять
                             не больше чем 50 символов.</p>
                     </div>
                     <div>
                         <h2>Категория</h2>
-                        <select>
+                        <select name="category">
                             <% for (String category : categoryNames){ %>
                                 <option value="<%=category%>"><%=category%></option>
                             <%}%>
@@ -60,15 +60,15 @@
                     </div>
                     <div>
                         <h2>Фото товара</h2>
-                        <input type="file">
+                        <input type="file" name="image">
                     </div>
                     <div>
                         <h2>Опишите</h2>
-                        <textarea name="Text1" cols="40" rows="5" ... ></textarea>
+                        <textarea name="description" cols="40" rows="5" ... ></textarea>
                     </div>
                     <div class = "price-container">
                         <span>Цена</span>
-                        <input type="text" class="price">
+                        <input type="text" name="price" class="price">
 
                     </div>
                     <div class="button-container">

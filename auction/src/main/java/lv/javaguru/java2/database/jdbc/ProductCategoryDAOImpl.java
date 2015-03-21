@@ -140,5 +140,10 @@ public class ProductCategoryDAOImpl extends DAOImpl implements ProductCategoryDA
         return productsCategory;
 
     }
+
+    @Override
+    public ProductCategory getByName(String categoryName) {
+        return null;
+    }
 }
 

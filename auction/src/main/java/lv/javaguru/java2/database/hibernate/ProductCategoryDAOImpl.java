@@ -7,6 +7,7 @@ import lv.javaguru.java2.domain.Product;
 import lv.javaguru.java2.domain.ProductCategory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -52,5 +53,13 @@ public class ProductCategoryDAOImpl implements ProductCategoryDAO {
     public List<ProductCategory> getAll() throws DBException {
         Session session = sessionFactory.getCurrentSession();
         return session.createCriteria(ProductCategory.class).list();
+    }
+
+    @Override
+    public ProductCategory getByName(String categoryName) {
+        Session session = sessionFactory.getCurrentSession();
+        return (ProductCategory)session
+                .createCriteria(ProductCategory.class)
+                .add(Restrictions.eq("name", categoryName)).uniqueResult();
     }
 }

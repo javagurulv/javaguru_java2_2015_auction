@@ -35,39 +35,47 @@
             <div class="product-form">
                 <form name="category" action="" method="post">
                     <h3>Управление категориями</h3>
-                    <div>
-                        <h2>Введите названия категории</h2>
-                        <input type="text" name="CategoryName">
 
-                        <!--      <p>Длина заголовка продукта должна составлять
-                                  не больше чем 50 символов.</p>
-                        -->
+
+                    <div>
+                        <h2>Введите названия категории для добавления</h2>
+                        <input type="text" name="AddCategoryName">
+                    </div>
+
+
+                    <div>
+                         <h2>
+                             <%=request.getAttribute("errorMsg")%>
+                         </h2>
+                    </div>
+
+
+                          <div class="button-container">
+                              <input type="submit" value="Добавить" name="AddBTN">
 
                           </div>
 
-                          <div class="button-container">
-                              <input type="submit" value="Добавить">
-                              <!--      <input type="reset" value="Обнулить"> -->
-                        <!--      <input type="submit" value="Назат"> -->
-                    </div>
-
 
                     <div>
+                        <h2>Выберите категорию для удаления</h2>
                         <% List<ProductCategory> categoryList = (List<ProductCategory>)request.getAttribute("model");
                             if (categoryList != null) {
-                                for (ProductCategory category : categoryList) {%>
+                        %>       <select name="DeleteCategoryName">
+                                 <% for (ProductCategory category : categoryList) {%>
+                                     <%= "<option value='"+category.getCategoryId()+"'>"+category.getName()+"</option>" %>
 
-                        <%=category.getName() +"<br><br>"%>
-
-                        <%
-
-                                }
+                                <%}
+                                %> </select> <%
                             }
-                        %>
+                                             %>
+                    </div>
 
 
+                    <div class="button-container">
+                        <input type="submit" value="Удалить" name="DeleteBTN">
 
                     </div>
+
 
 
                 </form>

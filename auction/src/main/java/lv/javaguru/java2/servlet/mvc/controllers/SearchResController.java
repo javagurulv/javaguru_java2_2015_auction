@@ -77,6 +77,6 @@ public class SearchResController {
 
     private List<Product> getQueryResults(String searchQuery){
         // This 4 must be changed somehow because controller shouldn't be aware of view
-        return searchEngine.searchForProductsBy(searchQuery, 1, 4);
+        return searchEngine.searchForProductsBy(searchQuery, 0, 4);
     }
 }

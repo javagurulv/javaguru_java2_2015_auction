@@ -50,7 +50,7 @@
         </div><!--End of category-list -->
         <div class="req-container">
 
-            <p> <strong><%=resultCount%></strong>
+            <p> Найдено <strong><%=resultCount%></strong>
                 результатов по запросу
                 <strong>"<%=request.getParameter("searchQuery")%>"</strong>
             </p>

@@ -55,7 +55,7 @@ public class SearchEngine {
         return new ArrayList<Product>();
     }
 
-    public Integer countResultsFor(String keywords){
+    public Integer getResultCountFor(String keywords){
         if (!keywords.isEmpty()) {
             Session session = sessionFactory.getCurrentSession();
 
@@ -65,10 +65,10 @@ public class SearchEngine {
             QueryBuilder productQB = searchFactory.buildQueryBuilder().forEntity(Product.class).get();
 
             Query luceneQuery = productQB.keyword().onFields("description", "name").matching(keywords).createQuery();
+
             org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery, Product.class);
 
-
-            return fullTextQuery.getMaxResults();
+            return fullTextQuery.list().size();
         }
 
         return 0;

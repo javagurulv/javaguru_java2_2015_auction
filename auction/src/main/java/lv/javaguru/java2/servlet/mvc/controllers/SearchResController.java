@@ -6,11 +6,8 @@ import lv.javaguru.java2.database.ProductDAO;
 import lv.javaguru.java2.domain.Product;
 import lv.javaguru.java2.domain.ProductCategory;
 import lv.javaguru.java2.services.SearchEngine;
-import lv.javaguru.java2.servlet.mvc.MVCModel;
-import lv.javaguru.java2.servlet.mvc.MVCController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,6 +46,7 @@ public class SearchResController {
         dataToSend.put("searchResult", getQueryResults(searchQuery));
         dataToSend.put("resultCount", getResultCount(searchQuery));
 
+
         //Getting data needed for left menu
         List<ProductCategory> categories = getProductCategories();
 
@@ -67,7 +65,7 @@ public class SearchResController {
     }
 
     private Integer getResultCount(String keyWord) {
-        return searchEngine.countResultsFor(keyWord);
+        return searchEngine.getResultCountFor(keyWord);
     }
 
 

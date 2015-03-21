@@ -31,6 +31,7 @@
         // Getting model and splitting it into meaningfull components
         Map<String, Object> model = (Map<String, Object>)request.getAttribute("model");
         List<Product> products = (List<Product>)model.get("searchResult");
+        Integer resultCount = (Integer)model.get("resultCount");
 
         List<String> categoryNames = (List<String>)model.get("categoryNames");
         List<Long> productsInCategory = (List<Long>)model.get("productsInCategory");
@@ -49,7 +50,7 @@
         </div><!--End of category-list -->
         <div class="req-container">
 
-            <p> <strong><%=products.size()%></strong>
+            <p> <strong><%=resultCount%></strong>
                 результатов по запросу
                 <strong>"<%=request.getParameter("searchQuery")%>"</strong>
             </p>

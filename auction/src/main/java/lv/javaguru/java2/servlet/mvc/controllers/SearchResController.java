@@ -47,6 +47,7 @@ public class SearchResController {
         //Getting search results
         String searchQuery = request.getParameter("searchQuery");
         dataToSend.put("searchResult", getQueryResults(searchQuery));
+        dataToSend.put("resultCount", getResultCount(searchQuery));
 
         //Getting data needed for left menu
         List<ProductCategory> categories = getProductCategories();
@@ -63,6 +64,10 @@ public class SearchResController {
 
         //Passing data to model
         return new ModelAndView("searchRes", "model", dataToSend);
+    }
+
+    private Integer getResultCount(String keyWord) {
+        return searchEngine.countResultsFor(keyWord);
     }
 
 

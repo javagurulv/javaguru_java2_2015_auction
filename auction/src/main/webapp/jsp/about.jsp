@@ -30,6 +30,7 @@
         <h2>Владислав</h2>
         <h2>Александер</h2>
         <h2>Анатолий</h2>
+        <h2>Денис</h2>
     </div> <!-- End of content -->
 </div> <!-- End of content-wrap -->
 <%@ include file="components/footer.jsp" %> <!-- footer -->

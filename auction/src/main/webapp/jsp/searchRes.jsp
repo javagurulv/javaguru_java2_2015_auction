@@ -55,6 +55,7 @@
                 <strong>"<%=request.getParameter("searchQuery")%>"</strong>
             </p>
             <div class="merch-list">
+
                 <% for (Product product : products) { %>
                     <div class="record">
                         <img src="<%=resPath%>/images/cat.jpg"/>

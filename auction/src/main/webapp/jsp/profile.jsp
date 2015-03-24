@@ -58,12 +58,12 @@
                     </fieldset>
                 </form>
 
-                <form>
+                <form name="avatar-upload" action="" method="post" enctype="multipart/form-data">
                     <fieldset class="profile-set">
                         <legend>Аватар:</legend>
                         <p>Ваш аватар будет виден всем пользователям</p>
 
-                        <input type="file" class="with-button">
+                        <input type="file" name="avatar"class="with-button">
                         <input type="submit" value="обновить" class="small-button">
                         <img src="https://placekitten.com/g/200/260">
                     </fieldset>

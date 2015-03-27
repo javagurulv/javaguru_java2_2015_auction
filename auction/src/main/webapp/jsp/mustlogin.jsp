@@ -24,7 +24,7 @@
     <%@ include file="components/navigation.jsp" %> <!-- Navigation -->
     <%@ include file="components/search.jsp" %> <!-- Search -->
     <div  class="content registr-wrap" style="height: 300px;">
-        <form name="authorization" action="<%=request.getContextPath()%>/auth" method="post">
+        <form name="authorization" action="<%=request.getContextPath()%>/login" method="post">
             <table>
                 <colgroup>
                     <col class="col1">

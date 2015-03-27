@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -27,6 +28,7 @@ import java.util.Properties;
 @Configuration
 @ComponentScan(basePackages = {"lv.javaguru.java2"})
 @EnableTransactionManagement
+@Import({ SecurityConfig.class })
 public class SpringAppConfig {
 
     private static final String DATABASE_PROPERTIES_FILE = "database.properties";

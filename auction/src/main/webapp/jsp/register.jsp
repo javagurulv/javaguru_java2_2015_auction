@@ -24,7 +24,7 @@
     <%@ include file="components/navigation.jsp" %> <!-- Navigation -->
     <%@ include file="components/search.jsp" %> <!-- Search -->
     <div  class="content registr-wrap">
-        <form name="registration" action="" method="post">
+        <form name="registration" action="register" method="post">
             <table>
                 <colgroup>
                     <col class="col1">

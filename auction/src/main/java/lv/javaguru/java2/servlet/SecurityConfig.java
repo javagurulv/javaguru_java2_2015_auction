@@ -25,26 +25,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests().antMatchers("/prot/**")
-                .access("hasRole('LOGINNED_USER')").and().formLogin()
-                .loginPage("/login").failureUrl("/login?error")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .and().logout().logoutSuccessUrl("/logoff")
-                .and().csrf()
-                .and().exceptionHandling().accessDeniedPage("/403");
+        http
+            .authorizeRequests()
+                .antMatchers("/staticRes/**").permitAll()
+                .antMatchers("/prot/**").access("hasRole('LOGINNED_USER')")
+                .and()
+            .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/prot/index")
+                .permitAll()
+                .and()
+            .logout()
+                .logoutUrl("/logoff")
+                .permitAll()
+                .and()
+            .csrf().disable();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
-        return encoder;
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder(){
+//        PasswordEncoder encoder = new BCryptPasswordEncoder();
+//        return encoder;
+//    }
 
 }

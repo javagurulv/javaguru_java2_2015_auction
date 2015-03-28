@@ -1,4 +1,10 @@
 <%@ page import="lv.javaguru.java2.domain.User" %>
+<%@ page import="lv.javaguru.java2.services.security.UserPrincipal" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="org.springframework.security.core.Authentication" %>
+<%@ page import="org.springframework.security.authentication.AnonymousAuthenticationToken" %>
+
+
 <%--
   Created by IntelliJ IDEA.
   User: Vladislav
@@ -9,14 +15,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    User user = null;
-    user = (User)session.getAttribute("User");
+    // Logic of showing login header or not!
+//    User user = null;
+    // Getting authentication object from SecurityContext
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//
+//    // Checking if authentication is anonymous or not!
+//    if (!(auth instanceof AnonymousAuthenticationToken)) {
+//        // Getting domain user!
+//        UserPrincipal userPrincipal = (UserPrincipal)auth.getPrincipal();
+//        user = userPrincipal.getDomainUser();
+//    }
 %>
 
 <header>
-    <% if (user==null){%>
+    <% if (auth instanceof AnonymousAuthenticationToken){%>
+
         <jsp:include page="components/headerLogin.jsp"/>
+
     <%}else {%>
+
         <jsp:include page="components/headerUser.jsp"/>
+
     <%};%>
 </header> <!-- End of header -->

@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BalancePageController extends SecuredController {
 
 
-    @RequestMapping(value = "balance", method = {RequestMethod.GET})
+    @RequestMapping(value = "/prot/balance", method = {RequestMethod.GET})
     public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) {
 
 

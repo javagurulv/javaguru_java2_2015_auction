@@ -40,7 +40,7 @@
                         Логин:
                     </td>
                     <td>
-                        <input type="text" name="login"/>
+                        <input type="text" name="username"/>
                     </td>
                 </tr>
                 <tr>

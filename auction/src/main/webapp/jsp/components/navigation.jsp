@@ -9,7 +9,7 @@
 
 <nav>
     <a href="<%=request.getContextPath()%>/index"><div>Главная</div></a>
-    <a href="<%=request.getContextPath()%>/userSale"><div>Торговля</div></a>
-    <a href="<%=request.getContextPath()%>/accControl"><div>Управление</div></a>
+    <a href="<%=request.getContextPath()%>/prot/userSale"><div>Торговля</div></a>
+    <a href="<%=request.getContextPath()%>/prot/accControl"><div>Управление</div></a>
     <a href="<%=request.getContextPath()%>/about"><div>О нас</div></a>
 </nav> <!-- End of navigation -->

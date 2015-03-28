@@ -31,7 +31,7 @@ public class CategoryManagementController {
 
 
 
-    @RequestMapping(value = "category", method = {RequestMethod.GET})
+    @RequestMapping(value = "/prot/category", method = {RequestMethod.GET})
     public ModelAndView processRequestGet(HttpServletRequest request, HttpServletResponse response) {
 
       ModelAndView modelAndView = new ModelAndView();
@@ -43,7 +43,7 @@ public class CategoryManagementController {
 
 
 
-    @RequestMapping(value = "category", params = "AddBTN", method = {RequestMethod.POST})
+    @RequestMapping(value = "/prot/category", params = "AddBTN", method = {RequestMethod.POST})
     public ModelAndView processRequestAddBTN(HttpServletRequest request, HttpServletResponse response) {
 
         ModelAndView modelAndView = new ModelAndView();

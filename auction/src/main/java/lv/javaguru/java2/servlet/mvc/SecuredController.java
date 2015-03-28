@@ -1,10 +1,9 @@
 package lv.javaguru.java2.servlet.mvc;
 
-import lv.javaguru.java2.services.AccountManager;
+import lv.javaguru.java2.services.security.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by Vladislav on 3/1/2015.

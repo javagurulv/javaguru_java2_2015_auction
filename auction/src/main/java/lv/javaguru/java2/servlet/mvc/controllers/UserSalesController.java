@@ -31,7 +31,7 @@ public class UserSalesController {
     ProductDAO productDAO;
 
 
-    @RequestMapping(value = "userSale", method = {RequestMethod.PUT, RequestMethod.GET})
+    @RequestMapping(value = "/prot/userSale", method = {RequestMethod.PUT, RequestMethod.GET})
     public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) {
         // This map will be passed to JSP
         Map<String, Object> dataToSend = new HashMap<String, Object>();

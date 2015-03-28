@@ -19,7 +19,7 @@ public class ProfileController {
     @Autowired
     FileUploader uploader;
 
-    @RequestMapping(value = "profile", method = {RequestMethod.GET})
+    @RequestMapping(value = "/prot/profile", method = {RequestMethod.GET})
     public ModelAndView processGetRequest(HttpServletRequest request, HttpServletResponse response) {
 
 

@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class AccControlController {
 
-    @RequestMapping(value = "accControl", method = {RequestMethod.GET})
+    @RequestMapping(value = "/prot/accControl", method = {RequestMethod.GET})
     public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) {
 
         ModelAndView modelAndView = new ModelAndView("accControl", "model", null);

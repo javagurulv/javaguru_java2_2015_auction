@@ -36,7 +36,7 @@ public class AddPageController {
     @Autowired
     ProductDAO productDAO;
 
-    @RequestMapping(value = "add", method = {RequestMethod.GET})
+    @RequestMapping(value = "/prot/add", method = {RequestMethod.GET})
     public ModelAndView processGetRequest(HttpServletRequest request, HttpServletResponse response) {
         // This map will be send to view
         Map<String, Object> dataToSend = new HashMap<String, Object>();

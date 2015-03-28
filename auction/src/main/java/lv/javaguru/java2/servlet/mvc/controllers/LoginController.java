@@ -4,8 +4,7 @@ package lv.javaguru.java2.servlet.mvc.controllers;
  * Created by Vladislav on 3/26/2015.
  */
 
-import lv.javaguru.java2.services.AccountManager;
-import lv.javaguru.java2.services.LoginException;
+import lv.javaguru.java2.services.security.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

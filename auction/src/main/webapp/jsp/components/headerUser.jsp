@@ -1,4 +1,7 @@
 <%@ page import="lv.javaguru.java2.domain.User" %>
+<%@ page import="lv.javaguru.java2.services.security.UserPrincipal" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="org.springframework.security.core.Authentication" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vladislav
@@ -7,7 +10,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% User user = (User)session.getAttribute("User"); %>
+<%
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    UserPrincipal userPrincipal = (UserPrincipal)auth.getPrincipal();
+    User user = userPrincipal.getDomainUser();
+%>
 
 
 <!-- This header context will be displayed if user is logged in -->

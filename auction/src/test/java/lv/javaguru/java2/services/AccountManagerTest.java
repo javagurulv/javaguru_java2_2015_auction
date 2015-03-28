@@ -1,11 +1,10 @@
 package lv.javaguru.java2.services;
 
-import junit.framework.TestCase;
 import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.security.AccountManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class IndexController{
 
-    @RequestMapping(value = "/prot/index", method = {RequestMethod.GET})
+    @RequestMapping(value = "index", method = {RequestMethod.GET})
     public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) {
 
 

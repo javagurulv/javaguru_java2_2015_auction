@@ -1,4 +1,4 @@
-package lv.javaguru.java2.services;
+package lv.javaguru.java2.services.security;
 
 import lv.javaguru.java2.database.DBException;
 import org.springframework.context.annotation.Bean;
@@ -47,12 +47,18 @@ public class MyUserDetailsService implements UserDetailsService {
 
     }
 
-    // Converts com.mkyong.users.model.User user to
+    // Converts domain User user to
     // org.springframework.security.core.userdetails.User
-    private User buildUserForAuthentication(lv.javaguru.java2.domain.User user,
+    private UserPrincipal buildUserForAuthentication(lv.javaguru.java2.domain.User user,
                                             List<GrantedAuthority> authorities) {
-        return new User(user.getLogin(), user.getPassword(),
+
+        // Creating user that will be stored by Spring security
+        UserPrincipal userPrincipal = new UserPrincipal(user.getLogin(), user.getPassword(),
                 true, true, true, true, authorities);
+        // Adding domain user, so we can get it any where we want.
+        userPrincipal.attachDomainUser(user);
+
+        return  userPrincipal;
     }
 
     private List<GrantedAuthority> buildUserAuthority() {

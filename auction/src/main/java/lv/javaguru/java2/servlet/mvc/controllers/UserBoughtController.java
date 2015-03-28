@@ -26,7 +26,7 @@ public class UserBoughtController {
     @Qualifier("ORM_ProductDAO")
     ProductDAO productDAO;
 
-    @RequestMapping(value = "userBought" , method = {RequestMethod.GET, RequestMethod.PUT})
+    @RequestMapping(value = "/prot/userBought" , method = {RequestMethod.GET, RequestMethod.PUT})
     public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response){
         // This map will be passed to JSP
         Map<String, Object> dataToSend = new HashMap<String, Object>();

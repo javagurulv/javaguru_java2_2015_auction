@@ -38,10 +38,15 @@ public class SearchResController {
 
     @RequestMapping(value = "prod", method = {RequestMethod.GET})
     public ModelAndView processSearchRequest(HttpServletRequest request, HttpServletResponse response) {
+        /* Model attributes that should be specified:
+            "query" - will show what query was searched
+            "searchResults" - list of results
+            "categoryNames" - list of category names
+            "productsInCategory" - list of product count in category
+        */
 
         //This map will be added to model
         Map<String, Object> dataToSend = new HashMap<String, Object>();
-
 
         //Getting search results if needed
         String searchQuery = request.getParameter("searchQuery");
@@ -67,6 +72,7 @@ public class SearchResController {
 
     //**************************************
     // Controller actions
+
     private void addQueryResults(Map<String, Object> dataToSend, String searchQuery){
         // Adds list of search results to hash map!
         dataToSend.put("searchResult", getQueryResults(searchQuery));

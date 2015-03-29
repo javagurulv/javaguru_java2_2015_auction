@@ -45,11 +45,15 @@ public class SearchEngine {
 
             Query luceneQuery = productQB.keyword().onFields("description", "name").matching(keywords).createQuery();
             org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery, Product.class);
+//
+//            fullTextQuery.setFirstResult(startFrom); //start from the N-th element
+//            fullTextQuery.setMaxResults(productCount); //return K elements
 
-            fullTextQuery.setFirstResult(startFrom); //start from the N-th element
-            fullTextQuery.setMaxResults(productCount); //return K elements
+            // Fix this later!
+            List<Product> searchResults = fullTextQuery.list();
+            if (searchResults.size()>4) return searchResults.subList(0, 4);
+            else                        return searchResults;
 
-            return fullTextQuery.list();
         }
 
         return new ArrayList<Product>();

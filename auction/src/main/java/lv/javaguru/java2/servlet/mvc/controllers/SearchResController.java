@@ -35,18 +35,59 @@ public class SearchResController {
     @Autowired
     ProductDAO productDAO;
 
+
     @RequestMapping(value = "prod", method = {RequestMethod.GET})
-    public ModelAndView processRequest(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView processSearchRequest(HttpServletRequest request, HttpServletResponse response) {
 
         //This map will be added to model
         Map<String, Object> dataToSend = new HashMap<String, Object>();
 
-        //Getting search results
+
+        //Getting search results if needed
         String searchQuery = request.getParameter("searchQuery");
+        if (searchQuery!=null){
+            dataToSend.put("query", searchQuery);
+            addQueryResults(dataToSend, searchQuery);
+        }
+
+        //Getting category results if needed
+        String category = request.getParameter("categ");
+        if (category!=null){
+            dataToSend.put("query", category);
+            addCategoryResults(dataToSend, category);
+        }
+
+        //Getting left menu content
+        addLeftMenuContent(dataToSend);
+
+        //Passing data to model
+        return new ModelAndView("searchRes", "model", dataToSend);
+    }
+
+
+    //**************************************
+    // Controller actions
+    private void addQueryResults(Map<String, Object> dataToSend, String searchQuery){
+        // Adds list of search results to hash map!
         dataToSend.put("searchResult", getQueryResults(searchQuery));
         dataToSend.put("resultCount", getResultCount(searchQuery));
+    }
+
+    private void addCategoryResults(Map<String, Object> dataToSend, String category){
+
+        ProductCategory productCategory = categoryDAO.getByName(category);
+        List<Product> products = productDAO.getProductsInCategory(productCategory);
 
 
+        dataToSend.put("resultCount", products.size());
+
+        // Getting only 4 needed results
+        if (products.size()>4) products = products.subList(0, 4);
+        dataToSend.put("searchResult", products);
+    }
+
+
+    private void addLeftMenuContent(Map<String, Object> dataToSend){
         //Getting data needed for left menu
         List<ProductCategory> categories = getProductCategories();
 
@@ -57,17 +98,17 @@ public class SearchResController {
             categoryNames.add(category.getName());
             productsInCategory.add(productDAO.getProductCountInCategory(category));
         }
+
         dataToSend.put("categoryNames", categoryNames);
         dataToSend.put("productsInCategory", productsInCategory);
-
-        //Passing data to model
-        return new ModelAndView("searchRes", "model", dataToSend);
     }
 
+
+    // *************************************
+    // Private helper functions
     private Integer getResultCount(String keyWord) {
         return searchEngine.getResultCountFor(keyWord);
     }
-
 
     private List<ProductCategory> getProductCategories(){
         try {
@@ -82,4 +123,6 @@ public class SearchResController {
         // This 4 must be changed somehow because controller shouldn't be aware of view
         return searchEngine.searchForProductsBy(searchQuery, 0, 4);
     }
+
+
 }

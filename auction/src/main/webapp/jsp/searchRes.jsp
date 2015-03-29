@@ -43,7 +43,12 @@
             <ul>
 
                 <% for(int i = 0; i < categoryNames.size(); i++) { %>
-                    <li><%=categoryNames.get(i)%><span> (<%=productsInCategory.get(i)%>)</span></li>
+                    <li>
+                        <a href="<%=request.getContextPath()%>/prod?categ=<%=categoryNames.get(i)%>">
+                            <%=categoryNames.get(i)%>
+                        </a>
+                        <span> (<%=productsInCategory.get(i)%>)</span>
+                    </li>
                 <%}%>
 
             </ul>
@@ -52,7 +57,7 @@
 
             <p> Найдено <strong><%=resultCount%></strong>
                 результатов по запросу
-                <strong>"<%=request.getParameter("searchQuery")%>"</strong>
+                <strong>"<%=model.get("query")%>"</strong>
             </p>
             <div class="merch-list">
 

@@ -72,6 +72,10 @@
 	height: 785px;
 	border: 1px solid black;
 }
+.category-list a{
+    text-decoration: none !important;
+}
+
 .category-list h1{
 	font-size: 19px;
 	margin-left: 15px;

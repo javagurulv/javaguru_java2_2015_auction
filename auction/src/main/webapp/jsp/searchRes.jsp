@@ -61,15 +61,27 @@
             </p>
             <div class="merch-list">
 
+                <!-- Product- list -->
                 <% for (Product product : products) { %>
                     <div class="record">
-                        <img src="<%=resPath%>/images/cat.jpg"/>
-                        <span><%=product.getName()%></span>
-                        <p>
-                            <%=product.getDescription()%>
-                        </p>
+                        <a href="<%=request.getContextPath()%>/details?prod=<%=product.getProductID()%>">
+                            <img src="<%=resPath%>/images/cat.jpg"/>
+                        </a>
+
+                        <a href="<%=request.getContextPath()%>/details?prod=<%=product.getProductID()%>">
+                            <span><%=product.getName()%></span>
+                        </a>
+
+                        <a href="<%=request.getContextPath()%>/details?prod=<%=product.getProductID()%>">
+                            <p>
+                                <%=product.getDescription()%>
+                            </p>
+                        </a>
+
                     </div>
                 <%}%>
+                <!-- End of product list -->
+
             </div> <!-- End of merch-list-->
         </div><!-- End of req-container -->
     </div> <!-- End of content -->

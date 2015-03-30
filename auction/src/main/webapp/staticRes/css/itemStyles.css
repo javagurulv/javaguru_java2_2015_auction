@@ -52,6 +52,9 @@
 	font-size: 14px;
 }
 
+.record a{
+    text-decoration: none !important;
+}
 /* Req container */
 .req-container{
 	border: 1px solid black;

@@ -6,10 +6,13 @@ import lv.javaguru.java2.database.ProductDAO;
 import lv.javaguru.java2.domain.Product;
 import lv.javaguru.java2.domain.ProductCategory;
 import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.security.UserPrincipal;
 import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import lv.javaguru.java2.servlet.mvc.SecuredController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,7 +52,7 @@ public class AddPageController {
     }
 
 
-    @RequestMapping(value = "add", method = {RequestMethod.POST})
+    @RequestMapping(value = "/prot/add", method = {RequestMethod.POST})
     public ModelAndView processPostRequest(HttpServletRequest request, HttpServletResponse response){
         // This map will be send to view
         Map<String, Object> dataToSend = new HashMap<String, Object>();
@@ -77,7 +80,7 @@ public class AddPageController {
 
         product.setStatus(true);
         product.setCategory(categoryDAO.getByName(request.getParameter("category")));
-        product.setUser((User)(request.getSession().getAttribute("User")));
+        product.setUser(getCurrentUser());
 
 
         return product;
@@ -106,5 +109,13 @@ public class AddPageController {
         }
         return categoryNames;
     }
+
+    private User getCurrentUser(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserPrincipal userPrincipal = (UserPrincipal)auth.getPrincipal();
+        User user = userPrincipal.getDomainUser();
+        return user;
+    }
+
 }
 

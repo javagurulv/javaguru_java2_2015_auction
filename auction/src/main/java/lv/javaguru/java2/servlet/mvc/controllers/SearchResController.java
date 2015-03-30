@@ -52,7 +52,7 @@ public class SearchResController {
         String searchQuery = request.getParameter("searchQuery");
         if (searchQuery!=null){
             dataToSend.put("query", searchQuery);
-            addQueryResults(dataToSend, searchQuery);
+            addQueryData(dataToSend, searchQuery);
         }
 
         //Getting category results if needed
@@ -73,7 +73,7 @@ public class SearchResController {
     //**************************************
     // Controller actions
 
-    private void addQueryResults(Map<String, Object> dataToSend, String searchQuery){
+    private void addQueryData(Map<String, Object> dataToSend, String searchQuery){
         // Adds list of search results to hash map!
         dataToSend.put("searchResult", getQueryResults(searchQuery));
         dataToSend.put("resultCount", getResultCount(searchQuery));
@@ -84,15 +84,19 @@ public class SearchResController {
         ProductCategory productCategory = categoryDAO.getByName(category);
         List<Product> products = productDAO.getProductsInCategory(productCategory);
 
+        List<Product> shownProducts = new ArrayList<Product>();
+        for (Product product: products) if (isOnSale(product)) shownProducts.add(product);
+
 
         dataToSend.put("resultCount", products.size());
 
         // Getting only 4 needed results
-        if (products.size()>4) products = products.subList(0, 4);
-        dataToSend.put("searchResult", products);
+        if (products.size()>4) products = shownProducts.subList(0, 4);
+        dataToSend.put("searchResult", shownProducts);
     }
 
 
+    // Left menu content
     private void addLeftMenuContent(Map<String, Object> dataToSend){
         //Getting data needed for left menu
         List<ProductCategory> categories = getProductCategories();
@@ -102,20 +106,40 @@ public class SearchResController {
 
         for (ProductCategory category: categories){
             categoryNames.add(category.getName());
-            productsInCategory.add(productDAO.getProductCountInCategory(category));
+            productsInCategory.add(productDAO.getActiveProductCountInCategory(category));
         }
 
         dataToSend.put("categoryNames", categoryNames);
         dataToSend.put("productsInCategory", productsInCategory);
     }
 
+    /* ***** ***** ***** ****** ***** ***** */
+    /* Private helper functions */
 
-    // *************************************
-    // Private helper functions
+    // result count
     private Integer getResultCount(String keyWord) {
         return searchEngine.getResultCountFor(keyWord);
     }
 
+    // results
+    private List<Product> getQueryResults(String searchQuery){
+        // Fix this later
+        List<Product> products =  searchEngine.searchForProductsBy(searchQuery, 0, 4);
+
+        List<Product> shownProducts = new ArrayList<Product>();
+        for (Product product: products) if (isOnSale(product)) shownProducts.add(product);
+
+        // This 4 must be changed somehow because controller shouldn't be aware of view
+        if(shownProducts.size()>4) return shownProducts.subList(0, 4);
+        else return shownProducts;
+    }
+
+    private boolean isOnSale(Product product){
+        return product.getStatus();
+    }
+
+
+    // left menu categories
     private List<ProductCategory> getProductCategories(){
         try {
             return categoryDAO.getAll();
@@ -124,11 +148,4 @@ public class SearchResController {
             return new ArrayList<ProductCategory>();
         }
     };
-
-    private List<Product> getQueryResults(String searchQuery){
-        // This 4 must be changed somehow because controller shouldn't be aware of view
-        return searchEngine.searchForProductsBy(searchQuery, 0, 4);
-    }
-
-
 }

@@ -1,3 +1,7 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page import="java.util.Objects" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="lv.javaguru.java2.domain.Product" %>
 <%--
   Created by IntelliJ IDEA.
   User: Denis
@@ -24,11 +28,35 @@
     <%@ include file="components/navigation.jsp" %> <!-- Navigation -->
     <%@ include file="components/search.jsp" %> <!-- Search -->
     <div  class="content">
+        <%
 
-        <h1>Title</h1> <!--No comments needed, but ok, Title-->
-        Description: description<!-- Product description must be here--><br/>
-        Category: Great<!--Product category--><br/>
-        Price: 9.99$ <!--Product price--> <button type="submit">BUY</button> <br/>
+            // Getting data send from user
+            Map<String, Object> model = (Map<String, Object>)request.getAttribute("model");
+            Product product = (Product)model.get("product");
+
+            boolean userIsLoggedIn = !(auth instanceof AnonymousAuthenticationToken);
+            boolean productBelongsToUser = product.getUser().equals(user);
+        %>
+
+
+        <h1><%=product.getName()%></h1> <!--No comments needed, but ok, Title-->
+        Описание: <%=product.getDescription()%><!-- Product description must be here--><br/>
+        Категоря: <%=product.getCategory().getName()%><!--Product category--><br/>
+        Цена: <%=product.getPrice()%>$ <!--Product price-->
+
+
+
+         <%
+          //Don't display button when not needed
+          if ((!productBelongsToUser)&&(userIsLoggedIn)){
+         %>
+                <form method="post">
+                    <input type="hidden" name="boughtProductID" value="<%=product.getProductID()%>">
+                    <button type="submit">BUY</button>
+                </form>
+        <%}%>
+        <br/>
+
         <img src="<%=resPath%>/images/cat.jpg"/> <!--image of the product--> Date: <time>2.01.2015</time>
 
 

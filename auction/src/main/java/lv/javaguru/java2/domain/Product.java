@@ -46,7 +46,6 @@ public class Product{
     @Column(name = "Price")
     private BigDecimal price;
 
-
     public ProductCategory getCategory() {
         return category;
     }

@@ -29,27 +29,44 @@
         <div style="float: left">
             <div style="background-color: gainsboro; padding: 10px">
                 <span style="font-size: 200%"> Добавить $5.00 USD</span> <br/>
-                <button type="submit">Пополнить</button>
+                <form name="balance1" method="post">
+                    <input type="hidden" name="reinforcement" value="5">
+                    <button type="submit">Пополнить</button>
+                </form>
             </div>
 
             <div style="background-color: gainsboro; padding: 10px">
                 <span style="font-size: 200%"> Добавить $10.00 USD</span> <br/>
-                <button type="submit">Пополнить</button>
+                <form name="balance2" method="post">
+                    <input type="hidden" name="reinforcement" value="10">
+                    <button type="submit">Пополнить</button>
+                </form>
             </div>
 
             <div style="background-color: gainsboro; padding: 10px">
                 <span style="font-size: 200%"> Добавить $15.00 USD</span> <br/>
-                <button type="submit">Пополнить</button>
+                <form name="balance3" method="post">
+                    <input type="hidden" name="reinforcement" value="15">
+                    <button type="submit">Пополнить</button>
+                </form>
             </div>
 
             <div style="background-color: gainsboro; padding: 10px">
                 <span style="font-size: 200%"> Добавить $20.00 USD</span> <br/>
-                <button type="submit">Пополнить</button>
+                <form name="balance4" method="post">
+                    <input type="hidden" name="reinforcement" value="20">
+                    <button type="submit">Пополнить</button>
+                </form>
             </div>
         </div>
+
+        <%
+            String balance = (String)request.getAttribute("model");
+        %>
         <div style="float: right; background-color: gainsboro; padding: 10px">
-            <span style="font-size: 150%">Осталось на счету <span>$4.74</span> </span> <!--Money stuff-->
-            <button>Подробности</button>
+            <span style="font-size: 150%">Осталось на счету <span><%=balance%></span> </span> <!--Money stuff-->
+            <button type="submit">Подробности</button>
+
         </div>
 
 

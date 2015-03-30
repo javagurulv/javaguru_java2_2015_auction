@@ -11,9 +11,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     UserPrincipal userPrincipal = (UserPrincipal)auth.getPrincipal();
-    User user = userPrincipal.getDomainUser();
+    user = userPrincipal.getDomainUser();
 %>
 
 

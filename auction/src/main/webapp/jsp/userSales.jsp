@@ -24,7 +24,7 @@
             // Getting model and splitting it into meaningfull components
             Map<String, Object> model = (Map<String, Object>)request.getAttribute("model");
             List<Product> products = (List<Product>)model.get("products");
-
+            String heading = (String)model.get("heading");
         %>
 
         <h1 class="content-header">Торговля</h1>
@@ -33,7 +33,7 @@
             <%@ include file="components/sales-menu-content.jsp" %> <!-- left-content -->
         </div><!--End of menu-list -->
         <div class="right-container">
-            <p>Размещённые лоты</p>
+            <p><%=heading%></p>
             <div class="product-list">
                 <% for(Product product: products) {%>
                     <div class="product-record">

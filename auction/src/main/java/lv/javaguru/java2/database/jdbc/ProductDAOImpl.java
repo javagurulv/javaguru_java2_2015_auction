@@ -32,6 +32,16 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
     }
 
     @Override
+    public Long getActiveProductCountInCategory(ProductCategory category) {
+        return null;
+    }
+
+    @Override
+    public Product getWithUserById(Long id) {
+        return null;
+    }
+
+    @Override
     public void create(Product product) throws DBException {
         if (product==null) return;
 

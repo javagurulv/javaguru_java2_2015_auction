@@ -51,8 +51,7 @@ public class SearchEngine {
 
             // Fix this later!
             List<Product> searchResults = fullTextQuery.list();
-            if (searchResults.size()>4) return searchResults.subList(0, 4);
-            else                        return searchResults;
+            return searchResults;
 
         }
 

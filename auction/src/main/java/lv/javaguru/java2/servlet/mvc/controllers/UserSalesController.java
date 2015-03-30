@@ -3,11 +3,16 @@ package lv.javaguru.java2.servlet.mvc.controllers;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.ProductDAO;
 import lv.javaguru.java2.domain.Product;
+import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.security.UserPrincipal;
 import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import lv.javaguru.java2.servlet.mvc.SecuredController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,20 +42,32 @@ public class UserSalesController {
         Map<String, Object> dataToSend = new HashMap<String, Object>();
 
         dataToSend.put("products", getOnSaleProducts());
+        dataToSend.put("heading", "Размещённые лоты");
 
         return new ModelAndView("userSales", "model", dataToSend);
     }
 
     private List<Product> getOnSaleProducts(){
-        List<Product> boughtProducts = new ArrayList<Product>();
-        try {
-            List<Product> products = productDAO.getAll();
+        List<Product> OnSaleProducts = new ArrayList<Product>();
+
+        User user = getCurrentUser();
+        if (user!=null){
+            List<Product> products = productDAO.getByUser(user);
             for (Product product : products){
-                if (product.getStatus()==true) boughtProducts.add(product);
+                if (product.getStatus()==true) OnSaleProducts.add(product);
             }
-        } catch (DBException e) {
-            e.printStackTrace();
         }
-        return boughtProducts;
+        return OnSaleProducts;
+    }
+
+
+    private User getCurrentUser(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = null;
+        if (!(auth instanceof AnonymousAuthenticationToken)){
+            UserPrincipal userPrincipal = (UserPrincipal)auth.getPrincipal();
+            user = userPrincipal.getDomainUser();
+        }
+        return user;
     }
 }

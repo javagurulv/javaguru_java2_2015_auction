@@ -18,7 +18,6 @@
     // Logic of showing login header or not!
 //    User user = null;
     // Getting authentication object from SecurityContext
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //
 //    // Checking if authentication is anonymous or not!
 //    if (!(auth instanceof AnonymousAuthenticationToken)) {
@@ -26,16 +25,18 @@
 //        UserPrincipal userPrincipal = (UserPrincipal)auth.getPrincipal();
 //        user = userPrincipal.getDomainUser();
 //    }
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    User user = null;
 %>
 
 <header>
     <% if (auth instanceof AnonymousAuthenticationToken){%>
 
-        <jsp:include page="components/headerLogin.jsp"/>
+        <%@ include file="headerLogin.jsp"%>
 
     <%}else {%>
 
-        <jsp:include page="components/headerUser.jsp"/>
+        <%@ include file="headerUser.jsp"%>
 
     <%};%>
 </header> <!-- End of header -->

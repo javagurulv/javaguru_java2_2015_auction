@@ -26,10 +26,19 @@ public class ProductDAOImpl implements ProductDAO {
     @Autowired
     SessionFactory sessionFactory;
 
+
     @Override
     public void create(Product product) throws DBException {
         Session session = sessionFactory.getCurrentSession();
         session.persist(product);
+    }
+
+    @Override
+    public Product getWithUserById(Long id) throws DBException{
+        Session session = sessionFactory.getCurrentSession();
+        Product product = (Product) session.get(Product.class, id);
+        product.getUser().getLogin();
+        return product;
     }
 
     @Override
@@ -73,6 +82,16 @@ public class ProductDAOImpl implements ProductDAO {
                 .add(Restrictions.eq("category", category))
                 .setProjection(Projections.rowCount()).uniqueResult();
 
+    }
+
+
+    @Override
+    public Long getActiveProductCountInCategory(ProductCategory category) {
+        Session session = sessionFactory.getCurrentSession();
+        return (Long)session.createCriteria(Product.class)
+                .add(Restrictions.eq("category", category))
+                .add(Restrictions.eq("status", true))
+                .setProjection(Projections.rowCount()).uniqueResult();
     }
 
     @Override

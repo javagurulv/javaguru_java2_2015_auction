@@ -3,6 +3,7 @@ package lv.javaguru.java2.domain;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Viktor on 01/07/2014.
@@ -39,6 +40,19 @@ public class User {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Product> productList;
+
+    public void addToBalance(BigDecimal money){
+        setBalance(getBalance().add(money));
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object==null) return false;
+        if (!(object instanceof User)) return false;
+        if (((User) object).getUserId()==this.userId) return true;
+        else return false;
+
+    }
 
     public long getUserId() {
         return userId;

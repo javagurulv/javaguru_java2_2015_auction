@@ -1,7 +1,6 @@
 package lv.javaguru.java2.database.hibernate;
 
-import lv.javaguru.java2.servlet.SpringAppConfig;
-import org.junit.Ignore;
+import lv.javaguru.java2.config.SpringAppConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

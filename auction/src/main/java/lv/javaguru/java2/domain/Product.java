@@ -5,6 +5,9 @@ import org.hibernate.search.annotations.Index;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Vladislav on 2/15/2015.
@@ -29,7 +32,7 @@ public class Product{
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "OWNERID", nullable = false)
     private User user;
 
@@ -45,6 +48,19 @@ public class Product{
 
     @Column(name = "Price")
     private BigDecimal price;
+
+    @Column(name ="Date")
+    private String date;
+
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
 
     public ProductCategory getCategory() {
         return category;
@@ -71,6 +87,8 @@ public class Product{
     }
 
     public BigDecimal getPrice() {
+        // To be continued!
+
         return price;
     }
 
@@ -112,5 +130,11 @@ public class Product{
 
     public boolean isStatus() {
         return status;
+    }
+
+    public void setCurrentDate(){
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        setDate(dateFormat.format(date));
     }
 }

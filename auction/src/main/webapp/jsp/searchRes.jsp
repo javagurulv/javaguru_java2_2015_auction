@@ -77,6 +77,7 @@
                                 <%=product.getDescription()%>
                             </p>
                         </a>
+                        <span class="datetime"><%=product.getDate()%></span>
 
                     </div>
                 <%}%>

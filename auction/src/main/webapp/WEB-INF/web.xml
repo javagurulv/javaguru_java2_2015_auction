@@ -8,7 +8,7 @@
     <!--
     <filter>
         <filter-name>MVCFilter</filter-name>
-        <filter-class>lv.javaguru.java2.servlet.mvc.MVCFilter</filter-class>
+        <filter-class>lv.javaguru.java2.mvc.MVCFilter</filter-class>
     </filter>
 
     <filter-mapping>
@@ -19,13 +19,13 @@
     <!--
     <servlet>
         <servlet-name>HelloWorldServlet</servlet-name>
-        <servlet-class>lv.javaguru.java2.servlet.servlets.HelloWorldServlet</servlet-class>
+        <servlet-class>lv.javaguru.java2.servletservlets.HelloWorldServlet</servlet-class>
     </servlet>
 
 
     <servlet>
         <servlet-name>ShowTableServlet</servlet-name>
-        <servlet-class>lv.javaguru.java2.servlet.servlets.ShowTableServlet</servlet-class>
+        <servlet-class>lv.javaguru.java2.servletservlets.ShowTableServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -35,7 +35,7 @@
 
     <servlet>
         <servlet-name>ShowProductsServlet</servlet-name>
-        <servlet-class>lv.javaguru.java2.servlet.servlets.ShowProductsServlet</servlet-class>
+        <servlet-class>lv.javaguru.java2.servletservlets.ShowProductsServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -51,7 +51,7 @@
 
     <servlet>
         <servlet-name>ParameterProcessingServlet</servlet-name>
-        <servlet-class>lv.javaguru.java2.servlet.servlets.ParameterProcessingServlet</servlet-class>
+        <servlet-class>lv.javaguru.java2.servletservlets.ParameterProcessingServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -61,7 +61,7 @@
 
     <servlet>
         <servlet-name>SessionUsageServlet</servlet-name>
-        <servlet-class>lv.javaguru.java2.servlet.servlets.SessionUsageServlet</servlet-class>
+        <servlet-class>lv.javaguru.java2.servletservlets.SessionUsageServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -71,7 +71,7 @@
 
     <servlet>
         <servlet-name>RedirectToJSPServlet</servlet-name>
-        <servlet-class>lv.javaguru.java2.servlet.servlets.RedirectToJSPServlet</servlet-class>
+        <servlet-class>lv.javaguru.java2.servletservlets.RedirectToJSPServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

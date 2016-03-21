@@ -57,7 +57,7 @@
         <%}%>
         <br/>
 
-        <img src="<%=resPath%>/images/cat.jpg"/> <!--image of the product--> Date: <time>2.01.2015</time>
+        <img src="<%=resPath%>/images/cat.jpg"/> <!--image of the product--> Date: <time><%=product.getDate()%></time>
 
 
         <!-- ------------------- -->

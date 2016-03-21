@@ -101,6 +101,22 @@ public class ProductDAOImplTest extends SpringIntegrationTest {
     }
 
     @Test
+    public void testUserShouldReturnProductListInLazyStyle() throws DBException{
+        User user = createUser("F", "L", "Login", "pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
+        ProductCategory category1 = createCategory("Vehicle");
+        ProductCategory category2 = createCategory("Animal");
+
+        userDAO.create(user);
+        productCategoryDAO.create(category1);
+        productCategoryDAO.create(category2);
+        // Created
+        // Creating products that will be tested in DB
+        Product product1 = createProduct("TestProduct1", user, category1);
+
+        assertEquals(1, user.getProductList().size());
+    }
+
+    @Test
     public void testGetProductsInCategory() throws DBException {
         // Creating dependent entities
         User user = createUser("F", "L", "Login", "pass", new BigDecimal("155.55"), "test@test.lv", "avatar.img");
@@ -242,6 +258,7 @@ public class ProductDAOImplTest extends SpringIntegrationTest {
         product.setImage(image);
         product.setPrice(price);
         product.setUser(owner);
+        product.setCurrentDate();
 
         return product;
     }
@@ -254,6 +271,7 @@ public class ProductDAOImplTest extends SpringIntegrationTest {
         product.setPrice(BigDecimal.valueOf(255));
         product.setUser(user);
         product.setCategory(category);
+        product.setCurrentDate();
 
         return product;
     }

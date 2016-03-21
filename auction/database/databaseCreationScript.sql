@@ -42,9 +42,10 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`products` (
 `Name` VARCHAR(32) NOT NULL,
 `Description` VARCHAR(3000),
 `Status` BOOL,
-`Image` VARCHAR(30),
+`Image` VARCHAR(300),
  `Price` DECIMAL(10,2),
 `OwnerID` INT(11) NOT NULL,
+  `Date` VARCHAR(12),
   `CategoryID` INT(11),
 PRIMARY KEY (`ProductID`),
 CONSTRAINT UserOwnsProduct FOREIGN KEY (OwnerID) REFERENCES users(UserID)

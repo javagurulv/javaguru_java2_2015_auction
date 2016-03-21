@@ -71,7 +71,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/auction/target/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/auction/target/java2/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="java2/web/Web" />
     </root>

@@ -38,7 +38,7 @@ public class User {
     @Column(name = "Avatar")
     private String avatar;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private List<Product> productList;
 
     public void addToBalance(BigDecimal money){
